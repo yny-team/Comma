@@ -25,6 +25,7 @@
 </head><!--/head-->
 
 <body>
+	<h5>테스트</h5>
 	<header id="header">
         <div class="container"  style="position: fixed; background-color: #fff; width: 100%; z-index: 10; top:0;">
             <div class="row">
@@ -33,11 +34,11 @@
 
                         <h1><img src="/resources/images/logo.png" alt="logo" style="width: 75px; height:55px;"></h1>
                     </a>
-                    <input type="text" class="search-form" autocomplete="off" placeholder="검색">
+                    <input type="text" class="search-form" autocomplete="off" placeholder="ê²ì">
                 <div class="pull-right">
                         <ul class="nav nav-pills">
-                            <li><a href="" style="border: 1px solid #dbb075; border-radius: 50px; margin-top:5px;">로그인</a></li>
-                            <li><a href="" style="background-color: #dbb075; color:white; border-radius: 50px; margin-top:5px;">회원가입</a></li>
+                            <li><a href="" style="border: 1px solid #dbb075; border-radius: 50px; margin-top:5px;">ë¡ê·¸ì¸</a></li>
+                            <li><a href="" style="background-color: #dbb075; color:white; border-radius: 50px; margin-top:5px;">íìê°ì</a></li>
                             <li><a href=""><i class="fa fa-2x fa-user" aria-hidden="true"></i></a></li>
                             <li><a href=""><i class="fa fa-2x fa-comments-o"></i></a></li>
                             <li><a href=""><i class="fa fa-2x fa-envelope-o"></i></a></li>
@@ -101,11 +102,11 @@
             <div class="row">
 <!--                    <img class="media-object" src="images/home/icon1.png" alt="" style="width:25px; height:25px; display: inline-block; padding-right:3px;">-->
 <!--                    <div class="form-group">
-                    <input type="button" name="name" class="form-control" value="000님, 무슨 생각을 하고 계신가요?" required="required" placeholder="Name" style=" border-radius: 25px;">
+                    <input type="button" name="name" class="form-control" value="000ë, ë¬´ì¨ ìê°ì íê³  ê³ì ê°ì?" required="required" placeholder="Name" style=" border-radius: 25px;">
                     </div>    --> 
                 <div class="col-md-12 col-lg-9">
                     <div class="form-group">
-                      <input type="button" name="name" class="form-control" value="000님, 현재 무슨 생각을 하고 계신가요?" required="required" placeholder="Name" style=" border-radius: 25px; background-color: #d99c4e; color:white; font-weight: 400;">
+                      <input type="button" name="name" class="form-control" value="000ë, íì¬ ë¬´ì¨ ìê°ì íê³  ê³ì ê°ì?" required="required" placeholder="Name" style=" border-radius: 25px; background-color: #d99c4e; color:white; font-weight: 400;">
                     </div>
                     <div class="row">
                          <div class="col-sm-12 col-md-12">
@@ -124,8 +125,8 @@
                                     <div class="post-bottom overflow">
                                         <ul class="nav navbar-nav post-nav">
 <!--                                            <li><a href="#"><i class="fa fa-tag"></i>Creative</a></li>-->
-                                            <li><a href="#"><i class="fa fa-heart"></i>좋아요 32</a></li>
-                                            <li><a href="#"><i class="fa fa-comments"></i>댓글 3개</a></li>
+                                            <li><a href="#"><i class="fa fa-heart"></i>ì¢ìì 32</a></li>
+                                            <li><a href="#"><i class="fa fa-comments"></i>ëê¸ 3ê°</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -199,7 +200,7 @@
                         <div class="sidebar-item categories">
                             <h5>&copy;2021, Comma Inc All Rights Reserved.</h5>
                             <ul class="nav navbar-stacked">
-                                <li><a href="#">개인정보처리방침</a></li>
+                                <li><a href="#">ê°ì¸ì ë³´ì²ë¦¬ë°©ì¹¨</a></li>
                                 <li class=""><a href="#">About</a></li>
 <!--                                <li><a href="#">Folio<span class="pull-right">(4)</span></a></li>-->
                             </ul>
