@@ -1,5 +1,17 @@
 package kr.or.comma.timeline.controller;
 
-public class TimelineController {
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
+@Controller
+public class TimelineController {
+	
+	@GetMapping("")
+	public String timelineForm() {
+		
+		return "main/timelineList";
+	}
+	
+	
+	
 }
