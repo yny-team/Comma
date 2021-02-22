@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +18,7 @@
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
     <![endif]-->       
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="shortcut icon" href="/resources/images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
@@ -31,12 +32,12 @@
                 <div class="col-sm-12 overflow" style=" padding-bottom: 10px;">
                     <a class="navbar-brand" href="index.html">
 
-                        <h1><img src="images/logo.png" alt="logo" style="width: 75px; height:55px;"></h1>
+                        <h1><img src="/resources/images/logo.png" alt="logo" style="width: 75px; height:55px;"></h1>
                     </a>
-                    <input type="text" class="search-form" autocomplete="off" placeholder="검색">
+                    <input type="text" class="search-form" autocomplete="off" placeholder="ê²ì">
                 <div class="pull-right">
                         <ul class="nav nav-pills">
-                            <li><a href="" style="border: 1px solid #dbb075; border-radius: 50px; margin-top:5px;">로그아웃</a></li>
+                            <li><a href="" style="border: 1px solid #dbb075; border-radius: 50px; margin-top:5px;">ë¡ê·¸ìì</a></li>
                             <li><a href=""><i class="fa fa-2x fa-user" aria-hidden="true"></i></a></li>
                             <li><a href=""><i class="fa fa-2x fa-comments-o"></i></a></li>
                             <li><a href=""><i class="fa fa-2x fa-envelope-o"></i></a></li>
@@ -49,12 +50,12 @@
     <!--/#header-->
 
     <ul class="portfolio-filter text-center">
-        <li><a class="btn btn-default" href="#" data-filter=".timeline">타임라인</a></li>
-        <li><a class="btn btn-default" href="#" data-filter=".gallery">갤러리</a></li>
-        <li><a class="btn btn-default" href="#" data-filter=".diary">다이어리</a></li>
+        <li><a class="btn btn-default" href="#" data-filter=".timeline">íìë¼ì¸</a></li>
+        <li><a class="btn btn-default" href="#" data-filter=".gallery">ê°¤ë¬ë¦¬</a></li>
+        <li><a class="btn btn-default" href="#" data-filter=".diary">ë¤ì´ì´ë¦¬</a></li>
         <li><a class="btn btn-default" href="#" data-filter=".TodoList">TodoList</a></li>
-        <li><a class="btn btn-default" href="#" data-filter=".friend">친구</a></li>
-        <li><a class="btn btn-default active" href="#" data-filter=".information">정보</a></li>
+        <li><a class="btn btn-default" href="#" data-filter=".friend">ì¹êµ¬</a></li>
+        <li><a class="btn btn-default active" href="#" data-filter=".information">ì ë³´</a></li>
     </ul><!--/#portfolio-filter-->
     
 
@@ -64,23 +65,23 @@
                 <div class="col-md-3 col-sm-4">
                     <div class="sidebar portfolio-sidebar">
                         <div class="sidebar-item categories">
-                            <h3>마이페이지 - 정보</h3>
+                            <h3>ë§ì´íì´ì§ - ì ë³´</h3>
                             <ul class="nav navbar-stacked">
-                                <li><a href="#">회원 정보</a></li>
-                                <li class="active"><a href="#">비밀번호 변경</a></li>
-                                <li><a href="#">이메일 변경</a></li>
+                                <li><a href="#">íì ì ë³´</a></li>
+                                <li class="active"><a href="#">ë¹ë°ë²í¸ ë³ê²½</a></li>
+                                <li><a href="#">ì´ë©ì¼ ë³ê²½</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <h2 style="text-align: center;">비밀번호 변경</h2> <br>
+                <h2 style="text-align: center;">ë¹ë°ë²í¸ ë³ê²½</h2> <br>
               <div class="col-md-9 col-sm-8">
                   <div style="width: 300px; margin: auto;margin-bottom: 30px;">
-                    <p>기존 비밀번호</p>
+                    <p>ê¸°ì¡´ ë¹ë°ë²í¸</p>
                     <input type="password" name="name" class="form-control" required="required" placeholder="Password"><br>
-                    <p>새로운 비밀번호</p>
+                    <p>ìë¡ì´ ë¹ë°ë²í¸</p>
                     <input type="password" name="name" class="form-control" required="required" placeholder="Password"><br>
-                    <p>비밀번호 확인</p>
+                    <p>ë¹ë°ë²í¸ íì¸</p>
                     <input type="password" name="name" class="form-control" required="required" placeholder="Password">
                 <div style="margin-top: 20px;">
                     <input type="submit" name="submit" class="btn btn-submit" style="width: 100px;margin-right: 30px;" value="Cancel">
@@ -100,7 +101,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center bottom-separator">
-                    <img src="images/home/under.png" class="img-responsive inline" alt="">
+                    <img src="/resources/images/home/under.png" class="img-responsive inline" alt="">
                 </div>
                 <div class="col-sm-12">
                     <div class="copyright-text text-center">
