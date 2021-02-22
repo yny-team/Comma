@@ -45,7 +45,7 @@
                 <div class="col-sm-12 overflow" style=" padding-bottom: 10px;">
                     <a class="navbar-brand" href="index.html">
 
-                        <h1><img src="images/logo.png" alt="logo" style="width: 75px; height:55px;"></h1>
+                        <h1><img src="/resources/images/logo.png" alt="logo" style="width: 75px; height:55px;"></h1>
                     </a>
                     <input type="text" class="search-form" autocomplete="off" placeholder="검색">
                 <div class="pull-right">
@@ -105,7 +105,7 @@
                        <div class="col-md-12 col-sm-12">
                            <div class="single-blog two-column">
                                <div class="post-thumb">
-                                   <a href="blogdetails.html"><img src="images/blog/8.jpg" class="img-responsive" alt=""></a>
+                                   <a href="blogdetails.html"><img src="/resources/images/blog/8.jpg" class="img-responsive" alt=""></a>
                                    <div class="post-overlay">
                                        <span class="uppercase"><a href="#">14 <br><small>Feb</small></a></span>
                                    </div>
@@ -127,7 +127,7 @@
                        <div class="col-md-12 col-sm-12">
                            <div class="single-blog two-column">
                                <div class="post-thumb">
-                                   <a href="blogdetails.html"><img src="images/blog/9.jpg" class="img-responsive" alt=""></a>
+                                   <a href="blogdetails.html"><img src="/resources/images/blog/9.jpg" class="img-responsive" alt=""></a>
                                    <div class="post-overlay">
                                        <span class="uppercase"><a href="#">14 <br><small>Feb</small></a></span>
                                    </div>
@@ -154,7 +154,7 @@
                             <h3>Profile</h3>
                             <div class="media">
                                     <div class="col-sm-12 text-center">
-                                        <img src="images/home/icon2.png" style="margin-bottom : 10px" alt="">
+                                        <img src="/resources/images/home/icon2.png" style="margin-bottom : 10px" alt="">
                                         <h3>홍길동<br>asdf1234@gmail.com</h3>
                                         <p>Ground round tenderloin flank shank ribeye. Hamkevin meatball swine. Cow shankle beef sirloin chicken ground round.</p>
                                     </div>
@@ -172,14 +172,14 @@
                         <div class="sidebar-item popular hidden-sm hidden-xs">
                             <h3>Fridends</h3>
                             <ul class="gallery">
-                                <li><a href="#"><img src="images/portfolio/popular1.jpg" alt=""></a>friend1</li>
-                                <li><a href="#"><img src="images/portfolio/popular2.jpg" alt=""></a>friend2</li>
-                                <li><a href="#"><img src="images/portfolio/popular3.jpg" alt=""></a>friend3</li>
+                                <li><a href="#"><img src="/resources/images/portfolio/popular1.jpg" alt=""></a>friend1</li>
+                                <li><a href="#"><img src="/resources/images/portfolio/popular2.jpg" alt=""></a>friend2</li>
+                                <li><a href="#"><img src="/resources/images/portfolio/popular3.jpg" alt=""></a>friend3</li>
                             </ul>
                             <ul class = "gallery">
-                                <li><a href="#"><img src="images/portfolio/popular4.jpg" alt=""></a>friend4</li>
-                                <li><a href="#"><img src="images/portfolio/popular5.jpg" alt=""></a>friend5</li>
-                                <li><a href="#"><img src="images/portfolio/popular1.jpg" alt=""></a>friend6</li>
+                                <li><a href="#"><img src="/resources/images/portfolio/popular4.jpg" alt=""></a>friend4</li>
+                                <li><a href="#"><img src="/resources/images/portfolio/popular5.jpg" alt=""></a>friend5</li>
+                                <li><a href="#"><img src="/resources/images/portfolio/popular1.jpg" alt=""></a>friend6</li>
                             </ul>
                         </div>
                     </div>

@@ -31,7 +31,7 @@
                 <div class="col-sm-12 overflow" style=" padding-bottom: 10px;">
                     <a class="navbar-brand" href="index.html">
 
-                        <h1><img src="images/logo.png" alt="logo" style="width: 75px; height:55px;"></h1>
+                        <h1><img src="/resources/images/logo.png" alt="logo" style="width: 75px; height:55px;"></h1>
                     </a>
                     <input type="text" class="search-form" autocomplete="off" placeholder="검색">
                 <div class="pull-right">
@@ -95,7 +95,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center bottom-separator">
-                    <img src="images/home/under.png" class="img-responsive inline" alt="">
+                    <img src="/resources/images/home/under.png" class="img-responsive inline" alt="">
                 </div>
                 <div class="col-sm-12">
                     <div class="copyright-text text-center">
