@@ -2,6 +2,20 @@ package kr.or.comma.user.vo;
 
 
 
+<<<<<<< HEAD
+	private int user_no;
+	private String user_id;//아이디
+	private String user_email;//이메일
+	private String user_name;//이름
+	private String user_password;//비번
+	private String user_intro;//자기소개
+	private String user_profile;//프로필이미지
+	private Date user_creat_dt;//생성날짜
+	private String user_authority;//
+	private boolean  user_enabled;//
+	public int getUser_no() {
+		return user_no;
+=======
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,6 +54,7 @@ public class UserVO implements UserDetails {
 		ArrayList<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
 		auth.add(new SimpleGrantedAuthority(userAuthority));
 		return auth;
+>>>>>>> 064e24c735026085758ffaadba3797e18d0e6c34
 	}
 
 	@Override
