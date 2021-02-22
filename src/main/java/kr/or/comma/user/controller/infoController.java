@@ -12,8 +12,7 @@ public class infoController {
 
 //	@Autowired
 //	private MypageInfoService mypageInfoService;
-//	
-//	@RequestMapping("/info")
+//	@RequestMapping("/mypage/info")
 	// '/WEB-INF/views//' + /mypage/info +'.jsp'
 	
 	

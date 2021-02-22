@@ -69,7 +69,7 @@
                             <h3>ë§ì´íì´ì§ - ì ë³´</h3>
                             <ul class="nav navbar-stacked">
                                 <li class="active"><a href="#">íì ì ë³´</a></li>
-                                <li><a href="#">ë¹ë°ë²í¸ ë³ê²½</a></li>
+                                <li><a href="#">ㅁㄴㅇㄻㄴㅇㄹ</a></li>
                                 <li><a href="#">ì´ë©ì¼ ë³ê²½</a></li>
                             </ul>
                         </div>
@@ -80,7 +80,7 @@
                     <div class="row">
                         <div class="col-sm-12 text-center">
                             <img src="/resources/images/aboutus/5.png" style="margin-bottom : 10px" alt="">
-                            <h2>íê¸¸ë<br><br>asdf1234@gmail.com</h2>
+                            <h2>홍길동<br><br>asdf1234@gmail.com</h2>
                             <p>Pork chop duis eu pig, labore sausage venison. Shankle fugiat duis, filet mignon tri-tip venison beef shank ribeye<br /> aliqua cillum dolore sed do in.</p>
                         </div>
                     </div>

@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,10 +48,10 @@
 
                         <h1><img src="/resources/images/logo.png" alt="logo" style="width: 75px; height:55px;"></h1>
                     </a>
-                    <input type="text" class="search-form" autocomplete="off" placeholder="검색">
+                    <input type="text" class="search-form" autocomplete="off" placeholder="ê²ì">
                 <div class="pull-right">
                         <ul class="nav nav-pills">
-                            <li><a href="" style="border: 1px solid #dbb075; border-radius: 50px; margin-top:5px;">로그아웃</a></li>
+                            <li><a href="" style="border: 1px solid #dbb075; border-radius: 50px; margin-top:5px;">ë¡ê·¸ìì</a></li>
                             <li><a href=""><i class="fa fa-2x fa-user" aria-hidden="true"></i></a></li>
                             <li><a href=""><i class="fa fa-2x fa-comments-o"></i></a></li>
                             <li><a href=""><i class="fa fa-2x fa-envelope-o"></i></a></li>
@@ -66,12 +67,12 @@
     <!--/#action-->
 <div class = "nav2">
     <ul class="portfolio-filter text-center">
-        <li><a class="btn btn-default active" href="#" data-filter=".timeline">타임라인</a></li>
-        <li><a class="btn btn-default" href="#" data-filter=".gallery">갤러리</a></li>
-        <li><a class="btn btn-default" href="#" data-filter=".diary">다이어리</a></li>
+        <li><a class="btn btn-default active" href="#" data-filter=".timeline">íìë¼ì¸</a></li>
+        <li><a class="btn btn-default" href="#" data-filter=".gallery">ê°¤ë¬ë¦¬</a></li>
+        <li><a class="btn btn-default" href="#" data-filter=".diary">ë¤ì´ì´ë¦¬</a></li>
         <li><a class="btn btn-default" href="#" data-filter=".TodoList">TodoList</a></li>
-        <li><a class="btn btn-default" href="#" data-filter=".friend">친구</a></li>
-        <li><a class="btn btn-default" href="#" data-filter=".information">정보</a></li>
+        <li><a class="btn btn-default" href="#" data-filter=".friend">ì¹êµ¬</a></li>
+        <li><a class="btn btn-default" href="#" data-filter=".information">ì ë³´</a></li>
     </ul>
 </div>    
     <!--/#portfolio-filter-->
@@ -95,8 +96,8 @@
                                    <a href="#" class="read-more">View More</a>
                                    <div class="post-bottom clearfix">
                                        <ul class="nav navbar-nav post-nav">
-                                           <li><a href="#"><i class="fa fa-heart"></i>좋아요 31</a></li>
-                                           <li><a href="#"><i class="fa fa-comments"></i>댓글 100개</a></li>
+                                           <li><a href="#"><i class="fa fa-heart"></i>ì¢ìì 31</a></li>
+                                           <li><a href="#"><i class="fa fa-comments"></i>ëê¸ 100ê°</a></li>
                                        </ul>
                                    </div>
                                </div>
@@ -117,8 +118,8 @@
                                    <a href="#" class="read-more">View More</a>
                                    <div class="post-bottom clearfix">
                                        <ul class="nav navbar-nav post-nav">
-                                           <li><a href="#"><i class="fa fa-heart"></i>좋아요 32</a></li>
-                                           <li><a href="#"><i class="fa fa-comments"></i>댓글 3개</a></li>
+                                           <li><a href="#"><i class="fa fa-heart"></i>ì¢ìì 32</a></li>
+                                           <li><a href="#"><i class="fa fa-comments"></i>ëê¸ 3ê°</a></li>
                                        </ul>
                                    </div>
                                </div>
@@ -139,8 +140,8 @@
                                    <a href="#" class="read-more">View More</a>
                                    <div class="post-bottom clearfix">
                                        <ul class="nav navbar-nav post-nav">
-                                           <li><a href="#"><i class="fa fa-heart"></i>좋아요 32</a></li>
-                                           <li><a href="#"><i class="fa fa-comments"></i>댓글 3개</a></li>
+                                           <li><a href="#"><i class="fa fa-heart"></i>ì¢ìì 32</a></li>
+                                           <li><a href="#"><i class="fa fa-comments"></i>ëê¸ 3ê°</a></li>
                                        </ul>
                                    </div>
                                </div>
@@ -155,7 +156,7 @@
                             <div class="media">
                                     <div class="col-sm-12 text-center">
                                         <img src="/resources/images/home/icon2.png" style="margin-bottom : 10px" alt="">
-                                        <h3>홍길동<br>asdf1234@gmail.com</h3>
+                                        <h3>íê¸¸ë<br>asdf1234@gmail.com</h3>
                                         <p>Ground round tenderloin flank shank ribeye. Hamkevin meatball swine. Cow shankle beef sirloin chicken ground round.</p>
                                     </div>
                             </div>
@@ -164,7 +165,7 @@
                             <h5>&copy;2021, Comma Inc All Rights Reserved.</h5>
                             <p>Designed by <a target="_blank" href="http://www.themeum.com">Themeum</a></p>
                             <ul class="nav navbar-stacked">
-                                <li><a href="#">개인정보처리방침</a></li>
+                                <li><a href="#">ê°ì¸ì ë³´ì²ë¦¬ë°©ì¹¨</a></li>
                                 <li class=""><a href="#">About</a></li>
 <!--                                <li><a href="#">Folio<span class="pull-right">(4)</span></a></li>-->
                             </ul>
