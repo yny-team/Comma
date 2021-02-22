@@ -1,5 +1,8 @@
 package kr.or.comma.user.vo;
 
+
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -156,5 +159,6 @@ public class UserVO implements UserDetails {
 				+ ", userCreate_dt=" + userCreate_dt + ", userAuthority=" + userAuthority + ", userEnabled="
 				+ userEnabled + "]";
 	}
-
+  
 }
+
