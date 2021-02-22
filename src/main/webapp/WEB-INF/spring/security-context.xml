@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:security="http://www.springframework.org/schema/security"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.1.xsd
+							http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+							http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+							
+		<context:component-scan base-package="kr.or.comma.user"/>	
+			
+        <security:http auto-config="true" use-expressions="true">
+         	 <security:intercept-url pattern="/user/login" access="isAnonymous()"/>
+        	 <security:intercept-url pattern="/user/signup" access="isAnonymous()"/>  
+        	 <security:intercept-url pattern="/user/info/**" access="hasRole('ROLE_USER')"/>         	 
+      		 <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/> 
+     		 <security:intercept-url pattern="/**" access="permitAll"/>
+        	
+		    <security:form-login
+		    	username-parameter="userId"
+		    	password-parameter="userPassword"
+		    	login-processing-url="/login"
+		    	login-page="/user/login"
+		    	authentication-failure-handler-ref="loginFailureHandler"
+		    	authentication-success-handler-ref="loginSuccessHandler"
+		    />        	
+        	<security:access-denied-handler
+    			error-page="/access403"
+			/>
+			
+			<security:logout
+				logout-url="/logout"
+				invalidate-session="true"
+				logout-success-url="/user/login"
+			/>
+			
+			<security:session-management>
+				<security:concurrency-control
+					max-sessions="1"
+					error-if-maximum-exceeded="true"
+				/>
+			</security:session-management>
+
+        </security:http>
+        
+        <security:authentication-manager>
+        	<security:authentication-provider ref="userAuthProvider"/>
+            <security:authentication-provider user-service-ref="userService">
+            	<!-- <security:password-encoder ref="passwordEncoder"/> -->
+            </security:authentication-provider>
+        </security:authentication-manager>
+        
+        <bean id="userService" class="kr.or.comma.user.svc.SecurityUserDetailService"/>
+		<bean id="userAuthProvider" class="kr.or.comma.user.svc.SecurityAuthenticationProvider"/>
+    	
+        <bean id="loginFailureHandler" class="kr.or.comma.user.handler.LoginFailureHandler">
+            <property name="userIdName" value="userId"/>
+        	<property name="errorMsgName" value="ERRORMSG"/>
+        	<property name="defaultFailureUrl" value="/user/login?error"/>
+        </bean>
+        <bean id="loginSuccessHandler" class="kr.or.comma.user.handler.LoginSuccessHandler">
+        	<property name="defaultUrl" value="/"/>
+        </bean>    	
+        
+		<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/></beans>

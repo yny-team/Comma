@@ -8,6 +8,11 @@
   */
 
 @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+input[type=password] {
+	font-family: "Nanum Gothic";
+}
 
   body {
     background: #fff;
@@ -363,6 +368,7 @@ ul.sub-menu {
 **************************/
 
 #footer {
+  padding-top: 75px;
   padding-bottom: 75px;
   background-image: url(../images/home/footer.png);
   background-repeat: repeat-x;

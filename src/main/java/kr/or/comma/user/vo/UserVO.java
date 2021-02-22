@@ -1,77 +1,164 @@
 package kr.or.comma.user.vo;
 
-import java.sql.Date;
 
-public class UserVO {
 
-	private int user_no;
-	private String user_id;
-	private String user_email;
-	private String user_name;
-	private String user_password;
-	private String user_intro;
-	private String user_profile;
-	private Date user_creat_dt;
-	private String user_authority;
-	private boolean  user_enabled;
-	public int getUser_no() {
-		return user_no;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+@SuppressWarnings("serial")
+public class UserVO implements UserDetails {
+
+	private int userNo;
+	private String userId;
+	private String userEmail;
+	private String userName;
+	private String userPassword;
+	private String userIntro;
+	private String userProfile;
+	private Date userCreate_dt;
+	private String userAuthority;
+	private boolean userEnabled;
+	
+	public UserVO() {
+		
 	}
-	public void setUser_no(int user_no) {
-		this.user_no = user_no;
+	
+	public UserVO(int userNo, String userId, String userName) {
+		this.userNo = userNo;
+		this.userId = userId;
+		this.userName = userName;
 	}
-	public String getUser_id() {
-		return user_id;
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		ArrayList<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
+		auth.add(new SimpleGrantedAuthority(userAuthority));
+		return auth;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+
+	@Override
+	public String getPassword() {
+		return userPassword;
 	}
-	public String getUser_email() {
-		return user_email;
+
+	@Override
+	public String getUsername() {
+		return userId;
 	}
-	public void setUser_email(String user_email) {
-		this.user_email = user_email;
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
 	}
-	public String getUser_name() {
-		return user_name;
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
 	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
 	}
-	public String getUser_password() {
-		return user_password;
+
+	@Override
+	public boolean isEnabled() {
+		return userEnabled;
 	}
-	public void setUser_password(String user_password) {
-		this.user_password = user_password;
+
+	public int getUserNo() {
+		return userNo;
 	}
-	public String getUser_intro() {
-		return user_intro;
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
-	public void setUser_intro(String user_intro) {
-		this.user_intro = user_intro;
+
+	public String getUserId() {
+		return userId;
 	}
-	public String getUser_profile() {
-		return user_profile;
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public void setUser_profile(String user_profile) {
-		this.user_profile = user_profile;
+
+	public String getUserEmail() {
+		return userEmail;
 	}
-	public Date getUser_creat_dt() {
-		return user_creat_dt;
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
-	public void setUser_creat_dt(Date user_creat_dt) {
-		this.user_creat_dt = user_creat_dt;
+
+	public String getUserName() {
+		return userName;
 	}
-	public String getUser_authority() {
-		return user_authority;
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public void setUser_authority(String user_authority) {
-		this.user_authority = user_authority;
+
+	public String getUserPassword() {
+		return userPassword;
 	}
-	public boolean isUser_enabled() {
-		return user_enabled;
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
-	public void setUser_enabled(boolean user_enabled) {
-		this.user_enabled = user_enabled;
+
+	public String getUserIntro() {
+		return userIntro;
 	}
+
+	public void setUserIntro(String userIntro) {
+		this.userIntro = userIntro;
+	}
+
+	public String getUserProfile() {
+		return userProfile;
+	}
+
+	public void setUserProfile(String userProfile) {
+		this.userProfile = userProfile;
+	}
+
+	public Date getUserCreate_dt() {
+		return userCreate_dt;
+	}
+
+	public void setUserCreate_dt(Date userCreate_dt) {
+		this.userCreate_dt = userCreate_dt;
+	}
+
+	public String getUserAuthority() {
+		return userAuthority;
+	}
+
+	public void setUserAuthority(String userAuthority) {
+		this.userAuthority = userAuthority;
+	}
+
+	public boolean isUserEnabled() {
+		return userEnabled;
+	}
+
+	public void setUserEnabled(boolean userEnabled) {
+		this.userEnabled = userEnabled;
+	}
+
+	@Override
+	public String toString() {
+		return "UserVO [userNo=" + userNo + ", userId=" + userId + ", userEmail=" + userEmail + ", userName=" + userName
+				+ ", userPassword=" + userPassword + ", userIntro=" + userIntro + ", userProfile=" + userProfile
+				+ ", userCreate_dt=" + userCreate_dt + ", userAuthority=" + userAuthority + ", userEnabled="
+				+ userEnabled + "]";
+	}
+  
 }
+

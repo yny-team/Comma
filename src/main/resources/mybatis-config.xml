@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- DB snake_case => VO camelCase 매핑 -->
+	<!-- user_id       => userId -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"></setting>
+	</settings>
+	
+ 	<typeAliases>
+ 	
+		<typeAlias type="kr.or.comma.user.vo.UserVO" alias="UserVO"/>
+	
+	</typeAliases>
+	
+</configuration>
