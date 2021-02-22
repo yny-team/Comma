@@ -11,6 +11,7 @@ tmp/
 *.swp
 *~.nib
 local.properties
+.classpath
 .settings/
 .loadpath
 .recommenders
@@ -62,7 +63,7 @@ local.properties
 
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
-#.project
+.project
 
 ### Eclipse Patch ###
 # Spring Boot Tooling
@@ -120,5 +121,9 @@ buildNumber.properties
 .mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
+
+# spring root-context.xml
+src/main/webapp/WEB-INF/spring/root-context.xml
+sql/
 
 # End of https://www.toptal.com/developers/gitignore/api/git,java,maven,eclipse
