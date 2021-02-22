@@ -35,7 +35,7 @@ public class UserVO implements UserDetails {
 	private String userPassword;
 	private String userIntro;
 	private String userProfile;
-	private Date userCreate_dt;
+	private Date userCreateDt;
 	private String userAuthority;
 	private boolean userEnabled;
 	
@@ -142,13 +142,13 @@ public class UserVO implements UserDetails {
 	public void setUserProfile(String userProfile) {
 		this.userProfile = userProfile;
 	}
-
-	public Date getUserCreate_dt() {
-		return userCreate_dt;
+	
+	public Date getUserCreateDt() {
+		return userCreateDt;
 	}
 
-	public void setUserCreate_dt(Date userCreate_dt) {
-		this.userCreate_dt = userCreate_dt;
+	public void setUserCreateDt(Date userCreateDt) {
+		this.userCreateDt = userCreateDt;
 	}
 
 	public String getUserAuthority() {
@@ -171,7 +171,7 @@ public class UserVO implements UserDetails {
 	public String toString() {
 		return "UserVO [userNo=" + userNo + ", userId=" + userId + ", userEmail=" + userEmail + ", userName=" + userName
 				+ ", userPassword=" + userPassword + ", userIntro=" + userIntro + ", userProfile=" + userProfile
-				+ ", userCreate_dt=" + userCreate_dt + ", userAuthority=" + userAuthority + ", userEnabled="
+				+ ", userCreateDt=" + userCreateDt + ", userAuthority=" + userAuthority + ", userEnabled="
 				+ userEnabled + "]";
 	}
   
