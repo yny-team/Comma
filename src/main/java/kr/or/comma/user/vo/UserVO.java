@@ -5,15 +5,15 @@ import java.sql.Date;
 public class UserVO {
 
 	private int user_no;
-	private String user_id;
-	private String user_email;
-	private String user_name;
-	private String user_password;
-	private String user_intro;
-	private String user_profile;
-	private Date user_creat_dt;
-	private String user_authority;
-	private boolean  user_enabled;
+	private String user_id;//아이디
+	private String user_email;//이메일
+	private String user_name;//이름
+	private String user_password;//비번
+	private String user_intro;//자기소개
+	private String user_profile;//프로필이미지
+	private Date user_creat_dt;//생성날짜
+	private String user_authority;//
+	private boolean  user_enabled;//
 	public int getUser_no() {
 		return user_no;
 	}
