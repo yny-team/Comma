@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.comma.mapper.timeline.TimelineFileMapper">
+	
+	<insert id="insertTimelineFile">
+		INSERT INTO TBL_TIMELINE_FILE(uuid, time_no, upload_path, file_name, file_type) 
+		VALUES (#{uuid}, TIME_NO_SEQ.CURRVAL, #{uploadPath}, #{fileName}, #{fileType})
+	</insert>
+	
+	<select id="selectTimelineFileListAll" resultType="ImageOrFileVO">
+		SELECT uuid, time_no as no, upload_path, file_name 
+		FROM TBL_TIMELINE_FILE
+	</select>
+				
+ 	<select id="selectTimelineFileOneByTimeNo" resultType="ImageOrFileVO">
+		SELECT uuid, time_no as no, upload_path, file_name 
+		FROM TBL_TIMELINE_FILE
+		WHERE time_no =  #{timeNo} 
+	</select>
+	
+	<!-- 
+	<delete id="deleteNoticeFileAllByNotiNo">
+		DELETE FROM tbl_notice_file 
+		WHERE notiNo = #{notiNo}
+	</delete>
+	
+	<insert id="insertReplactNoticeFile">
+		INSERT INTO tbl_notice_file(uuid, uploadpath, filename, filetype, notiNo) 
+		VALUES (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{no})
+	</insert>
+	
+	<select id="selectOldNoticeFileList" resultType="ImageOrFileVO">
+		<![CDATA[
+			SELECT uuid, uploadPath, fileName, fileType, notiNo as no
+			FROM tbl_notice_file 
+			WHERE uploadPath = DATE_FORMAT(NOW() - INTERVAL 1 DAY, '%Y\\%m\\%e');
+		]]>	
+	</select> -->
+		
+
+</mapper>

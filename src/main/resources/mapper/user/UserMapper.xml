@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.comma.mapper.user.UserMapper">
+	
+	<insert id="insertUser">
+<!-- 		INSERT INTO TBL_USER(user_no, user_id, user_email,
+							 user_name, user_password)
+		VALUES(USER_NO_SEQ.NEXTVAR, #{userId}, #{userEmail},
+			   #{userName}, #{userPassword}) -->
+		INSERT INTO TBL_USER(user_no, user_id, user_email, user_name, user_password)
+		VALUES(USER_NO_SEQ.NEXTVAL, #{userId}, #{userEmail}, #{userName}, #{userPassword})  	   
+	</insert>
+	
+	<select id="selectAllUser" resultType="kr.or.comma.user.vo.UserVO">
+		SELECT * FROM TBL_USER
+	</select>
+</mapper>

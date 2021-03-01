@@ -4,7 +4,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Portfolio 3 Columns + Sidebar | Triangle</title>
+<meta name="_csrf_header" content="${_csrf.headerName}" />    
+<meta name="_csrf" content="${_csrf.token}" />
+<title>Comma</title>
 <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/animate.min.css" rel="stylesheet"> 

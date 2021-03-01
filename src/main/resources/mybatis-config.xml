@@ -6,6 +6,7 @@
 
 	<!-- DB snake_case => VO camelCase 매핑 -->
 	<!-- user_id       => userId -->
+	<!-- time_id       => timeId -->
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true"></setting>
 	</settings>
@@ -13,7 +14,10 @@
  	<typeAliases>
  	
 		<typeAlias type="kr.or.comma.user.vo.UserVO" alias="UserVO"/>
-	
+		<typeAlias type="kr.or.comma.timeline.vo.TimelineVO" alias="TimelineVO"/>
+		
+		<typeAlias type="kr.or.comma.common.vo.ImageOrFileVO" alias="ImageOrFileVO"/>
+			
 	</typeAliases>
 	
 </configuration>
