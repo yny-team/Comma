@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.comma.mapper.timeline.TimelineMapper">
+	
+	<insert id="insertTimeline">
+		INSERT INTO TBL_TIMELINE(
+			time_no, user_no, time_title, time_content)
+		VALUES(
+			TIME_NO_SEQ.NEXTVAL, #{userNo}, 
+			#{timeTitle}, #{timeContent}
+			)  	   
+	</insert>
+	
+	<select id="selectTimelineListAll" resultType="TimelineVO">
+		SELECT u.user_name,  t.* 
+		FROM TBL_TIMELINE t
+		JOIN TBL_USER u
+		ON t.user_no = u.user_no
+		ORDER BY time_no DESC
+	</select>
+	
+	<select id="selectTimelineOneByTimeNo" resultType="TimelineVO">
+		SELECT u.user_name,  t.* 
+		FROM TBL_TIMELINE t
+		JOIN TBL_USER u
+		ON t.user_no = u.user_no
+		WHERE t.time_no = #{timeNo}
+	</select>
+	
+</mapper>

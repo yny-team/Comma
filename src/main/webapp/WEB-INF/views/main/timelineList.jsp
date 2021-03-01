@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/include/header_css.jsp" %>
+<link href="${pageContext.request.contextPath}/resources/css/bxslider/jquery.bxslider.css" rel="stylesheet">
 <head>
 <body>
 <%@ include file="/WEB-INF/include/header.jsp" %>
@@ -42,7 +44,7 @@
                     <div class="col-sm-3 col-lg-3 hidden-md hidden-sm hidden-xs text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
                         <div class="single-service">
                             <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-                                <img src="${pageContext.request.contextPath}`/resources/images/home/icon3.png" alt="">
+                                <img src="${pageContext.request.contextPath}/resources/images/home/icon3.png" alt="">
                             </div>
                             <h2>Swift Page Builder</h2>
                             <p>Venison tongue, salami corned beef ball tip meatloaf bacon</p>
@@ -59,94 +61,74 @@
             <div class="row">
                 <div class="col-md-12 col-lg-9">
                     <div class="form-group">
-                      <input type="button" name="name" class="form-control" value="000님, 현재 무슨 생각을 하고 계신가요?" required="required" placeholder="Name" style=" border-radius: 25px; background-color: #d99c4e; color:white; font-weight: 400;">
+                       <a href="/regist">
+                      	<input type="button" name="name" class="form-control" value="000님, 현재 무슨 생각을 하고 계신가요?" required="required" placeholder="Name" style=" border-radius: 25px; background-color: #d99c4e; color:white; font-weight: 400;">
+                       </a>
                     </div>
                     <div class="row">
-                         <div class="col-sm-12 col-md-12">
-                            <div class="single-blog single-column">
-                                <div class="post-thumb">
-                                    <a href="blogdetails.html"><img src="images/blog/7.jpg" class="img-responsive" alt=""></a>
-                                    <div class="post-overlay">
-                                       <span class="uppercase"><a href="#">14 <br><small>Feb</small></a></span>
-                                   </div>
-                                </div>
-                                <div class="post-content overflow">
-                                    <h2 class="post-title bold"><a href="blogdetails.html">Advanced business cards design</a></h2>
-                                    <h3 class="post-author"><a href="#">Posted by micron News</a></h3>
-                                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber [...]</p>
-                                    <a href="#" class="read-more">View More</a>
-                                    <div class="post-bottom overflow">
-                                        <ul class="nav navbar-nav post-nav">
-<!--                                            <li><a href="#"><i class="fa fa-tag"></i>Creative</a></li>-->
-                                            <li><a href="#"><i class="fa fa-heart"></i>ì¢ìì 32</a></li>
-                                            <li><a href="#"><i class="fa fa-comments"></i>ëê¸ 3ê°</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-12">
-                            <div class="single-blog single-column">
-                                <div class="post-thumb">
-                                    <a href="blogdetails.html"><img src="/resources/images/blog/8.jpg" class="img-responsive" alt=""></a>
-                                    <div class="post-overlay">
-                                       <span class="uppercase"><a href="#">14 <br><small>Feb</small></a></span>
-                                   </div>
-                                </div>
-                                <div class="post-content overflow">
-                                    <h2 class="post-title bold"><a href="blogdetails.html">Advanced business cards design</a></h2>
-                                    <h3 class="post-author"><a href="#">Posted by micron News</a></h3>
-                                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber [...]</p>
-                                    <a href="#" class="read-more">View More</a>
-                                    <div class="post-bottom overflow">
-                                        <ul class="nav navbar-nav post-nav">
-                                            <li><a href="#"><i class="fa fa-tag"></i>Creative</a></li>
-                                            <li><a href="#"><i class="fa fa-heart"></i>32 Love</a></li>
-                                            <li><a href="#"><i class="fa fa-comments"></i>3 Comments</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-12">
-                            <div class="single-blog single-column">
-                                <div class="post-thumb">
-                                    <a href="blogdetails.html"><img src="${pageContext.request.contextPath}/resources/images/blog/9.jpg" class="img-responsive" alt=""></a>
-                                    <div class="post-overlay">
-                                       <span class="uppercase"><a href="#">14 <br><small>Feb</small></a></span>
-                                   </div>
-                                </div>
-                                <div class="post-content overflow">
-                                    <h2 class="post-title bold"><a href="blogdetails.html">Advanced business cards design</a></h2>
-                                    <h3 class="post-author"><a href="#">Posted by micron News</a></h3>
-                                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber [...]</p>
-                                    <a href="#" class="read-more">View More</a>
-                                    <div class="post-bottom overflow">
-                                        <ul class="nav navbar-nav post-nav">
-                                            <li><a href="#"><i class="fa fa-tag"></i>Creative</a></li>
-                                            <li><a href="#"><i class="fa fa-heart"></i>32 Love</a></li>
-                                            <li><a href="#"><i class="fa fa-comments"></i>3 Comments</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                     	<c:choose>
+                        	<c:when test="${not empty timelineList}">
+	                    	<c:forEach items="${timelineList}" var="timeline">
+	                        <div class="col-sm-12 col-md-12" style="margin-bottom: 25px; border: 1px solid #d99c4e; padding-top: 25px; border-radius:25px;">
+	                            <div class="single-blog single-column">
+		                                    <div class="post-thumb">                        	
+		                                    	<div class="text-center">
+		                                    		<ul class="slide_timeline">
+		                                    			<c:forEach items="${timelineFileList}" var="timelineFile">
+															<c:if test="${timeline.timeNo eq timelineFile.no}">
+															<li>
+															   <img src="${pageContext.request.contextPath}/resources/upload/timeline/${timelineFile.uploadPath}/s_${timelineFile.uuid}_${timelineFile.fileName}" 
+										                                    		class="img-responsive" alt="" style="display:inline-block;">
+										                    </li>
+										                    </c:if>
+										                </c:forEach>
+													</ul>
+		                                    	</div>		                            	
+ 			                                    <div class="post-overlay">
+			                                       <span class="uppercase">
+			                                       	<a class="move" href="<c:out value='${timeline.timeNo}'/>">
+			                                       		<fmt:formatDate pattern="E"
+		                                        				value="${timeline.timeCreateDt}"/> 
+		                                        				<br><small>
+			                                       		<fmt:formatDate pattern="MM/dd"
+		                                        	value="${timeline.timeCreateDt}"/></small>
+		                                        	</a>
+		                                        	</span>
+			                                   </div> 
+			                                </div>                         
+	                                <div class="post-content overflow">
+	                                    <h3 class="post-author">
+	                                    	<span>
+	                                    		<img class="media-object" src="images/home/icon1.png" alt="" style="width:25px; height:25px; display: inline-block; padding-right:3px;">
+	                                    		<a href="/mypage"><c:out value="${timeline.userName}"/></a>
+	                                    	</span>
+	                                    </h3>
+	                                    <h2 class="post-title bold"><a class="move" href="<c:out value='${timeline.timeNo}'/>"><c:out value="${timeline.timeTitle}"/></a></h2>
+	                                    <p><c:out value="${timeline.timeContent}"/></p>
+	                                    <a href="#" class="read-more">View More</a>
+	                                    <div class="post-bottom overflow">
+	                                        <ul class="nav navbar-nav post-nav">
+	                                        	<li><a href="#"><i class="fa fa-heart"></i>조회수 <c:out value="${timeline.timeViewCount}"/></a></li>            
+	                                            <li><a href="#"><i class="fa fa-heart"></i>좋아요 <c:out value="${timeline.timeLikeCount}"/></a></li>
+	                                            <li><a href="#"><i class="fa fa-comments"></i>댓글 갯수</a></li>
+	                                        </ul>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>         	
+	                    	</c:forEach>
+	                    	</c:when>
+		                    <c:otherwise>
+		                    	<div class="col-sm-12 col-md-12">
+		                    		<div class="single-blog single-column">
+	                                <div class="post-content overflow">
+	                                    <h2 class="post-title bold"><a href="">현재 게시물이 존재하지 않습니다<./a></h2>
+	                                </div>		                    		
+		                    		</div>
+		                    	</div>
+		                    </c:otherwise>
+	                    </c:choose> 	                                        	                                          	                                        
                     </div>
-<!--                    <div class="blog-pagination">
-                        <ul class="pagination">
-                          <li><a href="#">left</a></li>
-                          <li><a href="#">1</a></li>
-                          <li><a href="#">2</a></li>
-                          <li class="active"><a href="#">3</a></li>
-                          <li><a href="#">4</a></li>
-                          <li><a href="#">5</a></li>
-                          <li><a href="#">6</a></li>
-                          <li><a href="#">7</a></li>
-                          <li><a href="#">8</a></li>
-                          <li><a href="#">9</a></li>
-                          <li><a href="#">right</a></li>
-                        </ul>
-                    </div>-->
                  </div>
                 <div class="col-md-3 hidden-md hidden-sm hidden-xs">
                     <div class="sidebar portfolio-sidebar">
@@ -171,10 +153,56 @@
                         </div>
                     </div>
                 </div>
+                <form id="actionForm" action="" method="GET">
+                
+                </form>
             </div>
         </div>
     </section>
 <%@ include file="/WEB-INF/include/footer.jsp" %>	
 <%@ include file="/WEB-INF/include/footer_css.jsp" %>	
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bxslider/jquery.bxslider.js"></script> 
+<script>
+	$(function() {
+		$('.slide_timeline').bxSlider({
+			// auto : true,
+			autoControls : true,
+			stopAutoOnClick : true,
+			pager : true,
+			controls : false
+		});
+	});
+</script>
+    <script>
+    
+    var actionForm = $("#actionForm");
+	var registResult = '<c:out value="${registMessage}"/>';
+	
+	checkRegistResult();
+	
+	history.replaceState({}, null, null);
+	
+	
+	function checkRegistResult(){
+		if(registResult === '' || history.state ){
+			return;
+		} else if(registResult === 'success'){
+			alert('게시글 등록을 성공했습니다.');
+		} else if(registResult === 'fail'){
+			alert("게시글 등록을 실패했습니다. 다시 한 번 시도해주세요.");
+		}	
+	};
+	
+	// [리스트 -> 조회] -> 리스트(검색 조건 유지)
+	$(".move").on("click", function(e){
+		
+		e.preventDefault();
+		actionForm.append("<input type='hidden' name='timeNo' value='" +
+				$(this).attr("href") + "'>");
+		actionForm.attr("action", "/detail");
+		actionForm.submit();
+	});
+	
+    </script>      
 </body>
 </html>
