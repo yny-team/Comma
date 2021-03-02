@@ -34,4 +34,18 @@ public class TimelineFileDAOImpl implements TimelineFileDAO {
 		return sqlSession.selectList(NAME_SPACE + ".selectTimelineFileOneByTimeNo", timeNo);
 	}
 	
+	@Override
+	public void deleteTimelineFileAllByTimeNo(int timeNo) {
+		
+		sqlSession.delete(NAME_SPACE + ".deleteTimelineFileAllByTimeNo", timeNo);
+		
+	}
+	
+	@Override
+	public void insertReplaceTimelineFile(ImageOrFileVO timelineFileList) {
+		
+		sqlSession.insert(NAME_SPACE + ".insertReplaceTimelineFile", timelineFileList);
+		
+	}
+	
 }

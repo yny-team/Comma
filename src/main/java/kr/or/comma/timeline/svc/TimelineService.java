@@ -2,7 +2,6 @@ package kr.or.comma.timeline.svc;
 
 import java.util.List;
 
-import kr.or.comma.common.vo.ImageOrFileVO;
 import kr.or.comma.timeline.vo.TimelineVO;
 
 public interface TimelineService {
@@ -13,8 +12,8 @@ public interface TimelineService {
 
 	public TimelineVO getTimelineOneByTimeNo(int timeNo);
 
-	public List<ImageOrFileVO> getTimelineFileListAll();
+	public String modifyTimeline(TimelineVO timelineVO);
 
-	public List<ImageOrFileVO> getTimelineOneFileByTimeNo(int timeNo);
+	public String removeTimeline(int timeNo);
 
 }

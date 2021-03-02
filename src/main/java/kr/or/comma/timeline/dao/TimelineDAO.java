@@ -12,4 +12,8 @@ public interface TimelineDAO {
 
 	public TimelineVO selectTimelineOneByTimeNo(int timeNo);
 
+	public int updateTimeline(TimelineVO timelineVO);
+
+	public int deleteTimeline(int timeNo);
+
 }

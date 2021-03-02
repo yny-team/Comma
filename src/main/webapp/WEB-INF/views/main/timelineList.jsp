@@ -99,7 +99,7 @@
 	                                <div class="post-content overflow">
 	                                    <h3 class="post-author">
 	                                    	<span>
-	                                    		<img class="media-object" src="images/home/icon1.png" alt="" style="width:25px; height:25px; display: inline-block; padding-right:3px;">
+	                                    		<img class="media-object" src="${pageContext.request.contextPath}/resources/images/favicon.png" alt="" style="width:25px; height:25px; display: inline-block; padding-right:3px;">
 	                                    		<a href="/mypage"><c:out value="${timeline.userName}"/></a>
 	                                    	</span>
 	                                    </h3>
@@ -177,8 +177,10 @@
     
     var actionForm = $("#actionForm");
 	var registResult = '<c:out value="${registMessage}"/>';
+	var removeResult = '<c:out value="${removeMessage}"/>';
 	
 	checkRegistResult();
+	checkRemoveResult();
 	
 	history.replaceState({}, null, null);
 	
@@ -191,6 +193,16 @@
 		} else if(registResult === 'fail'){
 			alert("게시글 등록을 실패했습니다. 다시 한 번 시도해주세요.");
 		}	
+	};
+	
+	function checkRemoveResult(){
+		if(removeResult === '' || history.state ){
+			return;
+		} else if(removeResult === 'success'){
+			alert('타임라인 삭제를 성공했습니다.');
+		} else if(removeResult === 'fail'){
+			alert("타임라인 삭제를 실패했습니다. 다시 한 번 시도해주세요.");
+		}			
 	};
 	
 	// [리스트 -> 조회] -> 리스트(검색 조건 유지)

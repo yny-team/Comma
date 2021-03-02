@@ -18,16 +18,18 @@
 		WHERE time_no =  #{timeNo} 
 	</select>
 	
-	<!-- 
-	<delete id="deleteNoticeFileAllByNotiNo">
-		DELETE FROM tbl_notice_file 
-		WHERE notiNo = #{notiNo}
+	<delete id="deleteTimelineFileAllByTimeNo">
+		DELETE FROM TBL_TIMELINE_FILE 
+		WHERE time_no = #{timeNo}
 	</delete>
 	
-	<insert id="insertReplactNoticeFile">
-		INSERT INTO tbl_notice_file(uuid, uploadpath, filename, filetype, notiNo) 
-		VALUES (#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{no})
+	<insert id="insertReplaceTimelineFile">
+		INSERT INTO TBL_TIMELINE_FILE(uuid, time_no, upload_path, file_name, file_type) 
+		VALUES (#{uuid}, #{no}, #{uploadPath}, #{fileName}, #{fileType})
 	</insert>
+	
+	<!-- 
+	
 	
 	<select id="selectOldNoticeFileList" resultType="ImageOrFileVO">
 		<![CDATA[
