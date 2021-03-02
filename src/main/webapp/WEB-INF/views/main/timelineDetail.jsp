@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-md-12 col-lg-9">
                     <div class="row">
-                         <div class="col-md-12 col-sm-12">
+                         <div class="col-md-12 col-sm-12" style="margin-bottom: 25px; border: 1px solid #d99c4e; padding-top: 25px; border-radius:25px;">
                             <div class="single-blog blog-details two-column">
  	                                <div class="post-thumb">
                                     	<div class="text-center">
@@ -40,73 +40,84 @@
                                         	</span>
 	                                   </div>
 	                                </div>
-                                <div class="post-content overflow">
-                                    <h2 class="post-title bold"><a href="#"><c:out value="${timelineVO.timeTitle}"/></a></h2>
-                                    <h3 class="post-author"><a href="#">Posted by <c:out value="${timelineVO.userName}"/></a></h3>
-                                    <p><c:out value="${timelineVO.timeContent}"/></p>
-                                    <div class="post-bottom overflow">
-                                        <ul class="nav navbar-nav post-nav">
-	                                        	<li><a href="#"><i class="fa fa-heart"></i>조회수 <c:out value="${timeline.timeViewCount}"/></a></li>            
-	                                            <li><a href="#"><i class="fa fa-heart"></i>좋아요 <c:out value="${timeline.timeLikeCount}"/></a></li>
-	                                            <li><a href="#"><i class="fa fa-comments"></i>댓글 갯수</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="author-profile padding">
-<!--                                         <div class="row">
-                                            <div class="col-sm-2">
-                                                <img src="images/blogdetails/1.png" alt="">
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <h3>Rodrix Hasel</h3>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliq Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</p>
-                                                <span>Website:<a href="www.jooomshaper.com"> www.jooomshaper.com</a></span>
-                                            </div>
-                                        </div> -->
-                                    </div>
-                                    <div class="response-area">
-                                    <h2 class="bold">Comments</h2>
-                                    <ul class="media-list">
-                                        <li class="media">
-                                            <div class="post-comment">
-                                                <div class="media-body">
-                                                    <span><img class="media-object" src="images/home/icon1.png" alt="" style="width:25px; height:25px; display: inline-block; padding-right:3px;"><a href="#">Endure</a></span>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliq Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
-                                                    <ul class="nav navbar-nav post-nav">
-                                                        <li><a href="#"><i class="fa fa-clock-o"></i>February 11,2014</a></li>
-                                                        <li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="parrent">
-                                                <ul class="media-list">
-                                                    <li class="post-comment reply">
-                                                        <div class="media-body">
-                                                            <span><img class="media-object" src="images/home/icon2.png" alt="" style="width:25px; height:25px; display: inline-block;"><a href="#">Endure</a></span>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut </p>
-                                                            <ul class="nav navbar-nav post-nav">
-                                                                <li><a href="#"><i class="fa fa-clock-o"></i>February 11,2014</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <div class="post-comment">
-                                                <div class="media-body">
-                                                    <span><img class="media-object" src="images/home/icon3.png" alt="" style="width:25px; height:25px; display: inline-block;"><a href="#">Endure</a></span>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliq Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
-                                                    <ul class="nav navbar-nav post-nav">
-                                                        <li><a href="#"><i class="fa fa-clock-o"></i>February 11,2014</a></li>
-                                                        <li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        
-                                    </ul>                   
-                                </div><!--/Response-area-->
-                                </div>
+	                                <div class="post-content overflow">
+	                                    <h3 class="post-author">
+	                                    	<span>
+	                                    		<img class="media-object" src="${pageContext.request.contextPath}/resources/images/favicon.png" alt="" style="width:25px; height:25px; display: inline-block; padding-right:3px;">
+	                                    		<a href="/mypage"><c:out value="${timelineVO.userName}"/></a>
+	                                    	</span>
+	                                    </h3>                                    
+	                                    <h2 class="post-title bold"><a href="#"><c:out value="${timelineVO.timeTitle}"/></a></h2>                
+	                                    <p><c:out value="${timelineVO.timeContent}"/></p>                                
+	<%--         							<input type="hidden" name="userNo" value='<sec:authentication property="principal.userNo"/>'/>
+	        							<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>    --%>  	
+			                        	<div class="form-group pull-right" style="margin-top: 15px;">
+			                        			<sec:authorize access="(( isAuthenticated() ) and ( principal.userNo == #timelineVO.userNo ))">		
+				         						<a href="/modify?timeNo=${timelineVO.timeNo}&userNo=${timelineVO.userNo}" class="btn btn-primary">
+				         							<i class="fa fa-pencil" aria-hidden="true">
+				         							수정하기</i>
+				         						</a>
+				         						</sec:authorize>
+				         						<a href="/" class="btn btn-success">
+				         							<i class="fa fa-list" aria-hidden="true">
+				         							목록보기</i>
+				         						</a>
+				         				</div>            
+				         				                        
+	                                    <div class="post-bottom overflow">
+	                                        <ul class="nav navbar-nav post-nav">
+		                                        	<li><a href="#"><i class="fa fa-heart"></i>조회수 <c:out value="${timelineVO.timeViewCount}"/></a></li>            
+		                                            <li><a href="#"><i class="fa fa-heart"></i>좋아요 <c:out value="${timelineVO.timeLikeCount}"/></a></li>
+		                                            <li><a href="#"><i class="fa fa-comments"></i>댓글 갯수</a></li>
+	                                        </ul>
+	                                    </div>
+	                                    <div class="author-profile padding">
+	
+	                                    </div>
+	                                    <div class="response-area">
+	                                    <h2 class="bold">Comments</h2>
+	                                    <ul class="media-list">
+	                                        <li class="media">
+	                                            <div class="post-comment">
+	                                                <div class="media-body">
+	                                                    <span><img class="media-object" src="images/home/icon1.png" alt="" style="width:25px; height:25px; display: inline-block; padding-right:3px;"><a href="#">Endure</a></span>
+	                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliq Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
+	                                                    <ul class="nav navbar-nav post-nav">
+	                                                        <li><a href="#"><i class="fa fa-clock-o"></i>February 11,2014</a></li>
+	                                                        <li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
+	                                                    </ul>
+	                                                </div>
+	                                            </div>
+	                                            <div class="parrent">
+	                                                <ul class="media-list">
+	                                                    <li class="post-comment reply">
+	                                                        <div class="media-body">
+	                                                            <span><img class="media-object" src="images/home/icon2.png" alt="" style="width:25px; height:25px; display: inline-block;"><a href="#">Endure</a></span>
+	                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut </p>
+	                                                            <ul class="nav navbar-nav post-nav">
+	                                                                <li><a href="#"><i class="fa fa-clock-o"></i>February 11,2014</a></li>
+	                                                            </ul>
+	                                                        </div>
+	                                                    </li>
+	                                                </ul>
+	                                            </div>
+	                                        </li>
+	                                        <li class="media">
+	                                            <div class="post-comment">
+	                                                <div class="media-body">
+	                                                    <span><img class="media-object" src="images/home/icon3.png" alt="" style="width:25px; height:25px; display: inline-block;"><a href="#">Endure</a></span>
+	                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliq Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
+	                                                    <ul class="nav navbar-nav post-nav">
+	                                                        <li><a href="#"><i class="fa fa-clock-o"></i>February 11,2014</a></li>
+	                                                        <li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
+	                                                    </ul>
+	                                                </div>
+	                                            </div>
+	                                        </li>
+	                                        
+	                                    </ul>                   
+	                                	</div><!--/Response-area-->
+	                                </div>
                             </div>
                         </div>
                     </div>

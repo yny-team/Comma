@@ -35,6 +35,7 @@ public class TimelineServiceImpl implements TimelineService {
 		
 		if(registSuccessCount <= 0) {
 			registSuccess = "fail";
+			return registSuccess;
 		}
 
 		if((registSuccessCount > 0) && (timelineVO.getTimelineFileList() == null || 
@@ -65,15 +66,54 @@ public class TimelineServiceImpl implements TimelineService {
 		return timelineDAO.selectTimelineOneByTimeNo(timeNo);
 	}
 	
+	@Transactional
 	@Override
-	public List<ImageOrFileVO> getTimelineFileListAll() {
+	public String modifyTimeline(TimelineVO timelineVO) {
 		
-		return timelineFileDAO.selectTimelineFileListAll();
+		log.info("modifyTimeline : {}", timelineVO);
+
+		String modifySuccess = "success";
+		
+		timelineFileDAO.deleteTimelineFileAllByTimeNo(timelineVO.getTimeNo());
+		
+		int modifySuccessCount = timelineDAO.updateTimeline(timelineVO);
+		
+		if(modifySuccessCount <= 0) {
+			modifySuccess = "fail";
+			return modifySuccess;
+		}
+		
+		if((modifySuccessCount > 0) && (timelineVO.getTimelineFileList() == null || 
+				timelineVO.getTimelineFileList().size() < 0)){
+			return modifySuccess;
+		} else if((modifySuccessCount > 0 ) && timelineVO.getTimelineFileList() != null ||
+				timelineVO.getTimelineFileList().size() > 0) {
+			timelineVO.getTimelineFileList().forEach(timelineFileList -> {
+				timelineFileList.setNo(timelineVO.getTimeNo());
+				timelineFileDAO.insertReplaceTimelineFile(timelineFileList);
+			});
+		}
+		
+		return modifySuccess;
 	}
 	
+	@Transactional
 	@Override
-	public List<ImageOrFileVO> getTimelineOneFileByTimeNo(int timeNo) {
+	public String removeTimeline(int timeNo) {
 		
-		return timelineFileDAO.selectTimelineFileOneByTimeNo(timeNo);
+		log.info("removeTimeline : {}", timeNo);
+		String removeSuccess = "success";
+		
+		timelineFileDAO.deleteTimelineFileAllByTimeNo(timeNo);
+		
+		int removeSuccessCount = timelineDAO.deleteTimeline(timeNo);
+		
+		if(removeSuccessCount <= 0) {
+			removeSuccess = "fail";
+			return removeSuccess;
+		}
+		
+		return removeSuccess;
 	}
+	
 }

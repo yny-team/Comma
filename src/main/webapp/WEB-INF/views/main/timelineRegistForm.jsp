@@ -14,52 +14,6 @@
 <head>
 <body>
 <%@ include file="/WEB-INF/include/header.jsp" %>
-    <section id="page-breadcrumb">
-        <div class="vertical-center sun">
-             <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-md-6 col-lg-3 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
-                        <div class="single-service">
-                            <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
-                                <img src="${pageContext.request.contextPath}/resources/images/home/icon1.png" alt="">
-                            </div>
-                            <h2>Incredibly Responsive</h2>
-                            <p>Ground round tenderloin flank shank </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
-                        <div class="single-service">
-                            <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="600ms">
-                                <img src="${pageContext.request.contextPath}/resources/images/home/icon2.png" alt="">
-                            </div>
-                            <h2>Superior Typography</h2>
-                            <p>Hamburger ribeye drumstick turkey, </p>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-lg-3 hidden-md hidden-sm hidden-xs text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
-                        <div class="single-service">
-                            <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-                                <img src="${pageContext.request.contextPath}/resources/images/home/icon3.png" alt="">
-                            </div>
-                            <h2>Swift Page Builder</h2>
-                            <p>Venison tongue, salami corned beef ball tip meatloaf bacon.</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-lg-3 hidden-md hidden-sm hidden-xs text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="900ms">
-                        <div class="single-service">
-                            <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="900ms">
-                                <img src="${pageContext.request.contextPath}`/resources/images/home/icon3.png" alt="">
-                            </div>
-                            <h2>Swift Page Builder</h2>
-                            <p>Venison tongue, salami corned beef ball tip meatloaf bacon</p>
-                        </div>
-                    </div>                    
-                </div>
-            </div>
-        </div>
-   </section>
-    <!--/#action-->
-
     <section id="projects" class="padding-top">
         <div class="container">
             <div class="row">
@@ -67,9 +21,9 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
                             <div class="single-blog single-column">
-			                    <div class=" bottom">
+			                    <form:form modelAttribute="timelineVO" role="form" method="post" action="/regist">
+			                    <div class="panel-body">
 			                        <h1 id="timeline" class="timeline">타임라인 글쓰기</h1>
-			                        <form:form modelAttribute="timelineVO" role="form" method="post" action="/regist">
 			                            <div class="form-group">
 			                                <form:input path="timeTitle" type="text"  cssClass="form-control" required="required" placeholder="제목을 작성해주세요"/>
 			                           		<font id="chk_time_title" name="chk_time_title"></font> 
@@ -86,23 +40,23 @@
 		            					</div>
 		            					<div class="uploadResult">
 		            						<ul></ul>           				
-		            					</div>      		            								                            
-			                            
-         								<input type="hidden" name="userNo" value='4'/>
-         								<%-- <sec:authentication property="principal.userNo"/> --%>
-         								<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>     	
-			                        	<div class="form-group pull-right" style="margin-top: 15px;">
-				         						<button type="submit" class="btn btn-primary">
-				         							<i class="fa fa-pencil" aria-hidden="true">
-				         							작성하기</i>
-				         						</button>
-				         						<a href="/" class="btn btn-success">
-				         							<i class="fa fa-list" aria-hidden="true">
-				         							목록보기</i>
-				         						</a>
-				         				</div>
-			                        </form:form>
-			                    </div>                                
+		            					</div>      		   
+		            			</div>		         								                            
+	                            <div class="form-group">
+        								<input type="hidden" name="userNo" value='<sec:authentication property="principal.userNo"/>'/>
+        								<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>     	
+		                        	<div class="form-group pull-right" style="margin-top: 15px;">
+			         						<button type="submit" class="btn btn-primary">
+			         							<i class="fa fa-pencil" aria-hidden="true">
+			         							작성하기</i>
+			         						</button>
+			         						<a href="/" class="btn btn-success">
+			         							<i class="fa fa-list" aria-hidden="true">
+			         							목록보기</i>
+			         						</a>
+			         				</div>
+		         				</div>
+			                    </form:form>
                             </div>
                         </div>
                     </div>

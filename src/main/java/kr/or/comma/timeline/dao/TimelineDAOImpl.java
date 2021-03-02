@@ -32,4 +32,16 @@ public class TimelineDAOImpl implements TimelineDAO {
 		
 		return sqlSession.selectOne(NAME_SPACE + ".selectTimelineOneByTimeNo", timeNo);
 	}
+	
+	@Override
+	public int updateTimeline(TimelineVO timelineVO) {
+		
+		return sqlSession.update(NAME_SPACE + ".updateTimeline", timelineVO);
+	}
+	
+	@Override
+	public int deleteTimeline(int timeNo) {
+		
+		return sqlSession.delete(NAME_SPACE + ".deleteTimeline", timeNo);
+	}
 }

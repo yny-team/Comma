@@ -27,4 +27,16 @@
 		WHERE t.time_no = #{timeNo}
 	</select>
 	
+	<update id="updateTimeline">
+		UPDATE TBL_TIMELINE
+		SET user_no = #{userNo}, time_title = #{timeTitle}, 
+			time_content = #{timeContent}, time_create_dt = sysdate 
+		WHERE time_no = #{timeNo}	   
+	</update>
+	
+	<delete id="deleteTimeline">
+		DELETE FROM TBL_TIMELINE
+		WHERE time_no = #{timeNo}
+	</delete>
+		
 </mapper>
