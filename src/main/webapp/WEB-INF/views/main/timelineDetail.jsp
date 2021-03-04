@@ -77,44 +77,28 @@
 	                                    <div class="response-area">
 	                                    <h2 class="bold">Comments</h2>
 	                                    <ul class="media-list">
-	                                        <li class="media">
-	                                            <div class="post-comment">
-	                                                <div class="media-body">
-	                                                    <span><img class="media-object" src="images/home/icon1.png" alt="" style="width:25px; height:25px; display: inline-block; padding-right:3px;"><a href="#">Endure</a></span>
-	                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliq Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
-	                                                    <ul class="nav navbar-nav post-nav">
-	                                                        <li><a href="#"><i class="fa fa-clock-o"></i>February 11,2014</a></li>
-	                                                        <li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
-	                                                    </ul>
-	                                                </div>
-	                                            </div>
-	                                            <div class="parrent">
-	                                                <ul class="media-list">
-	                                                    <li class="post-comment reply">
-	                                                        <div class="media-body">
-	                                                            <span><img class="media-object" src="images/home/icon2.png" alt="" style="width:25px; height:25px; display: inline-block;"><a href="#">Endure</a></span>
-	                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut </p>
-	                                                            <ul class="nav navbar-nav post-nav">
-	                                                                <li><a href="#"><i class="fa fa-clock-o"></i>February 11,2014</a></li>
-	                                                            </ul>
-	                                                        </div>
-	                                                    </li>
-	                                                </ul>
-	                                            </div>
-	                                        </li>
-	                                        <li class="media">
-	                                            <div class="post-comment">
-	                                                <div class="media-body">
-	                                                    <span><img class="media-object" src="images/home/icon3.png" alt="" style="width:25px; height:25px; display: inline-block;"><a href="#">Endure</a></span>
-	                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliq Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
-	                                                    <ul class="nav navbar-nav post-nav">
-	                                                        <li><a href="#"><i class="fa fa-clock-o"></i>February 11,2014</a></li>
-	                                                        <li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
-	                                                    </ul>
-	                                                </div>
-	                                            </div>
-	                                        </li>
-	                                        
+                                    		<c:forEach items="${timelineCommentList}" var="timelineComment">					                    
+		                                        <li class="media" data-no='<c:out value="${timelineComment.timeCommNo}"/>'>
+		                                            <div class="post-comment">
+		                                                <div class="media-body">
+		                                                    <span><img class="media-object" src="images/home/icon1.png" alt="" style="width:25px; height:25px; display: inline-block; padding-right:3px;"><a href="#"><c:out value="${timelineComment.userName}"/></a></span>
+		                                                    <p><c:out value="${timelineComment.timeCommContent}"/></p>
+		                                                    <ul class="nav navbar-nav post-nav">
+		                                                        <li>
+		                                                        	<a href="#"><i class="fa fa-clock-o"></i>
+		                                                        		<fmt:formatDate pattern="yy/MM/dd"
+                                        								value="${timelineVO.timeCreateDt}"/>
+                                        							</a>
+                                        						</li>
+                                        						<sec:authorize access="(( isAuthenticated() ) and ( principal.userNo == #timelineComment.userNo ))">		
+		                                                        <li><a href="#"><i class="fa fa-reply"></i>수정</a></li>
+		                                                        <li><a href="#"><i class="fa fa-reply"></i>삭제</a></li>
+		                                                        </sec:authorize>
+		                                                    </ul>
+		                                                </div>
+		                                            </div>                
+		                                        </li>
+	                                        </c:forEach>	                                        
 	                                    </ul>                   
 	                                	</div><!--/Response-area-->
 	                                </div>
@@ -161,6 +145,62 @@
 			controls : false
 		});
 	});
+</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/comment/comment.js"></script>
+<script>
+	
+/* 	console.log("=========================");
+	console.log("JS REGIST TEST");
+	
+	var timeNoValue = '<c:out value="${timelineVO.timeNo}"/>';
+	
+	// for commentService regist test
+	commentService.regist(
+		{
+			timeCommContent: "JS TEST", userNo: 4, timeNo: timeNoValue
+		},
+		function(result){
+			alert("RESULT : " + result);
+		}
+				
+	); */
+	
+/* 	console.log("=========================");
+	console.log("JS REMOVE TEST");
+	
+	var timeNoValue = '<c:out value="${timelineVO.timeNo}"/>';
+	commentService.remove(38, function(count){
+		console.log(count);
+		
+		if(count == 'success'){
+			alert("REMOVED");
+		}
+		
+	}, function(err){
+		alert('ERROR...');
+	}); */
+
+/* 	console.log("=========================");
+	console.log("JS MODIFY TEST");
+	
+	var timeNoValue = '<c:out value="${timelineVO.timeNo}"/>';	
+	
+	commentService.modify({
+		timeCommNo : 39,
+		userNo : 4,
+		timeNo : timeNoValue,
+		timeCommContent : "Modified Reply..."
+	}, function(result){
+		alert("수정 완료");
+	}) */
+	
+/* 	console.log("=========================");
+	console.log("JS DETAIL TEST");
+	
+	commentService.detail(39, function(data){
+		console.log(data);
+	}); */
+	
 </script>	  
 </body>
 </html>
