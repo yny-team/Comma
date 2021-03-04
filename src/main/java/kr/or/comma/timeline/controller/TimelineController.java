@@ -7,9 +7,6 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.acls.model.NotFoundException;
 import org.springframework.stereotype.Controller;
@@ -19,12 +16,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.comma.common.vo.ImageOrFileVO;
+import kr.or.comma.timeline.svc.TimelineCommentService;
 import kr.or.comma.timeline.svc.TimelineFileService;
 import kr.or.comma.timeline.svc.TimelineService;
+import kr.or.comma.timeline.vo.TimelineCommentVO;
 import kr.or.comma.timeline.vo.TimelineVO;
 
 @Controller
@@ -38,8 +36,11 @@ public class TimelineController {
 	@Autowired
 	private TimelineFileService timelineFileService;
 	
+	@Autowired
+	private TimelineCommentService timelineCommentService;
+	
 	@GetMapping("")
-	public String timelineHome(Model model) {
+	public String Index(Model model) {
 		
 		log.info("timeline main get :::: ");
 		
@@ -53,8 +54,29 @@ public class TimelineController {
 	}
 	
 	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/detail")
+	public String detailPage(@RequestParam("timeNo") int timeNo, Model model) {
+				
+		log.info("timeline detail get :::: {}", timeNo);
+
+		TimelineVO timelineVO = timelineService.getTimelineOneByTimeNo(timeNo);
+		List<ImageOrFileVO> timelineFileList = timelineFileService.getTimelineOneFileByTimeNo(timeNo);
+		List<TimelineCommentVO> timelineCommentList = timelineCommentService.getTimelineCommentListAll(timeNo);
+		
+		if(timelineVO == null) {
+			throw new NotFoundException("타임라인이 존재하지 않습니다.");
+		}
+		
+		model.addAttribute("timelineVO", timelineVO);
+		model.addAttribute("timelineFileList", timelineFileList);
+		model.addAttribute("timelineCommentList", timelineCommentList);
+		
+		return "main/timelineDetail";
+	}	
+	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/regist")
-	public String timelineRegistForm(@ModelAttribute TimelineVO timelineVO) {
+	public String registTimelineForm(@ModelAttribute TimelineVO timelineVO) {
 		
 		log.info("timeline regist get :::: {}", timelineVO);
 		
@@ -63,7 +85,7 @@ public class TimelineController {
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/regist")
-	public String timelineRegist(@ModelAttribute @Valid TimelineVO timelineVO, BindingResult bindingResult,
+	public String registTimeline(@ModelAttribute @Valid TimelineVO timelineVO, BindingResult bindingResult,
 			RedirectAttributes rttr) {
 		
 		log.info("timeline regist post :::: {}", timelineVO);
@@ -79,34 +101,18 @@ public class TimelineController {
 		return "redirect:/";
 	}
 	
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/detail")
-	public String timelineDetailPage(@RequestParam("timeNo") int timeNo, Model model) {
-				
-		log.info("timeline detail get :::: {}", timeNo);
-
-		TimelineVO timelineVO = timelineService.getTimelineOneByTimeNo(timeNo);
-		List<ImageOrFileVO> timelineFileList = timelineFileService.getTimelineOneFileByTimeNo(timeNo);
-		
-		if(timelineVO == null) {
-			throw new NotFoundException("타임라인이 존재하지 않습니다.");
-		}
-		
-		model.addAttribute("timelineVO", timelineVO);
-		model.addAttribute("timelineFileList", timelineFileList);
-		
-		return "main/timelineDetail";
-	}
 	
 	@PreAuthorize("(( isAuthenticated() ) and ( principal.userNo == #userNo ))")
 	@GetMapping("/modify")
-	public String modifyForm(@RequestParam("timeNo") int timeNo, @RequestParam("userNo") int userNo,
+	public String modifyTimelineForm(@RequestParam("timeNo") int timeNo, @RequestParam("userNo") int userNo,
 		 Model model, RedirectAttributes rttr)   {
 		
 		log.info("userNo : {} => timeline modify get :::: {}",userNo, timeNo);
 		
 		TimelineVO timelineVO = timelineService.getTimelineOneByTimeNo(timeNo);
 		List<ImageOrFileVO> timelineFileList = timelineFileService.getTimelineOneFileByTimeNo(timeNo);
+		List<TimelineCommentVO> timelineCommentList = timelineCommentService.getTimelineCommentListAll(timeNo);
+
 		
 		String resultAddress = "main/timelineModifyForm";
 		
@@ -121,6 +127,7 @@ public class TimelineController {
 		if(!model.containsAttribute("timelineVO")) {
 			model.addAttribute("timelineVO", timelineVO);	
 		 	model.addAttribute("timelineFileList", timelineFileList);
+		 	model.addAttribute("timelineCommentList", timelineCommentList);
 		}
 		
 		return resultAddress;
@@ -129,7 +136,7 @@ public class TimelineController {
 	
 	@PreAuthorize("(( isAuthenticated() ) and ( principal.userNo == #timelineVO.userNo ))")
 	@PostMapping("/modify")					 
-	public String modify(@ModelAttribute @Valid TimelineVO timelineVO, BindingResult bindingResult,
+	public String modifyTimeline(@ModelAttribute @Valid TimelineVO timelineVO, BindingResult bindingResult,
 			 RedirectAttributes rttr) {
 	
 		log.info("userNo : {} => timeline modify post :::: {}",timelineVO.getUserNo(), timelineVO.getTimeNo());
@@ -153,7 +160,7 @@ public class TimelineController {
 	
 	@PreAuthorize("(( isAuthenticated() ) and ( principal.userNo == #userNo ))")
 	@PostMapping("/remove")
-	public String remove(int timeNo, int userNo, RedirectAttributes rttr) throws Exception {
+	public String removeTimeline(int timeNo, int userNo, RedirectAttributes rttr) throws Exception {
 		
 		log.info("userNo : {} => timeline remove post :::: {}",timeNo, userNo);
 

@@ -35,10 +35,10 @@ public class TimelineControllerTest {
 	}
 
 
-//	@Test
-	public void testTimelineHome() throws Exception {
+	@Test
+	public void testTimelineIndex() throws Exception {
 		
-		log.info("testTimelineForm : " + mockMvc.perform(MockMvcRequestBuilders.get(""))
+		log.info("testTimelineIndex : " + mockMvc.perform(MockMvcRequestBuilders.get(""))
 				.andReturn()
 				.getModelAndView()
 				.getModelMap());

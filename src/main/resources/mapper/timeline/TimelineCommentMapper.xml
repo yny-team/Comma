@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.comma.mapper.timeline.TimelineCommentMapper">
+	
+	<insert id="insertTimelineComment">
+		INSERT INTO TBL_TIMELINE_COMMENT(time_comm_no, time_no, time_comm_content, user_no)
+		VALUES(TIME_COMM_NO_SEQ.NEXTVAL , #{timeNo}, #{timeCommContent}, #{userNo})
+	</insert>
+		
+	<select id="selectTimelineCommentOneByTimeCommNo" resultType="TimelineCommentVO">
+		SELECT * FROM TBL_TIMELINE_COMMENT
+		WHERE time_comm_no = #{timeCommNo}
+	</select>
+	
+	<update id="updateTimelineComment">
+		UPDATE TBL_TIMELINE_COMMENT
+		SET time_comm_content = #{timeCommContent}, user_no = #{userNo}, time_comm_create_dt = sysdate 
+		WHERE time_comm_no = #{timeCommNo}
+	</update>
+	
+	<delete id="deleteTimelineComment">
+		DELETE FROM TBL_TIMELINE_COMMENT
+		WHERE time_comm_no = #{timeCommNo}
+	</delete>
+	
+	<select id="selectTimelineCommentListAll" resultType="TimelineCommentVO">
+		SELECT u.user_name, tc.time_comm_no, tc.time_no, tc.user_no, tc.time_comm_content, tc.time_comm_create_dt
+		FROM TBL_TIMELINE_COMMENT tc
+		JOIN TBL_USER u
+		ON tc.user_no = u.user_no			
+		WHERE tc.time_no = #{timeNo}
+		ORDER BY tc.time_comm_no DESC
+	</select>
+		
+</mapper>
