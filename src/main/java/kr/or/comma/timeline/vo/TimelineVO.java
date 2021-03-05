@@ -12,7 +12,7 @@ public class TimelineVO {
 	
    private int timeNo; 
    private int userNo;
-   private String userName;
+   private String userNames;
    
    @NotBlank
    @Size(min = 1, max=255)
@@ -40,15 +40,15 @@ public class TimelineVO {
    public void setUserNo(int userNo) {
       this.userNo = userNo;
    }
-   public String getUserName() {
-	   return userName;
+   public String getUserNames() {
+	  return userNames;
    }
-   public void setUserName(String userName) {
-		this.userName = userName;
-	}
+   public void setUserNames(String userNames) {
+	  this.userNames = userNames;
+   }
    public String getTimeTitle() {
-	    return timeTitle;
-	   }
+	  return timeTitle;
+   }
    public void setTimeTitle(String timeTitle) {
       this.timeTitle = timeTitle;
    }
@@ -98,7 +98,7 @@ public class TimelineVO {
 	}
 	@Override
 	public String toString() {
-		return "TimelineVO [timeNo=" + timeNo + ", userNo=" + userNo + ", userName=" + userName + ", timeTitle="
+		return "TimelineVO [timeNo=" + timeNo + ", userNo=" + userNo + ", userNames=" + userNames + ", timeTitle="
 				+ timeTitle + ", timeContent=" + timeContent + ", timeViewCount=" + timeViewCount + ", timeLikeCount="
 				+ timeLikeCount + ", timeCommCount=" + timeCommCount + ", timeCreateDt=" + timeCreateDt
 				+ ", timeOpenScope=" + timeOpenScope + ", timelineFileList=" + timelineFileList + "]";

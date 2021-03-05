@@ -10,7 +10,7 @@ public class TimelineCommentVO {
     private String timeCommContent; 
     private int timeCommLikeCount; 
     private Date timeCommCreateDt;
-    private String userName;
+    private String userNames;
 	public int getTimeCommNo() {
 		return timeCommNo;
 	}
@@ -47,16 +47,16 @@ public class TimelineCommentVO {
 	public void setTimeCommCreateDt(Date timeCommCreateDt) {
 		this.timeCommCreateDt = timeCommCreateDt;
 	}
-	public String getUserName() {
-		return userName;
+	public String getUserNames() {
+		return userNames;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserNames(String userNames) {
+		this.userNames = userNames;
 	}
 	@Override
 	public String toString() {
 		return "TimelineCommentVO [timeCommNo=" + timeCommNo + ", userNo=" + userNo + ", timeNo=" + timeNo
 				+ ", timeCommContent=" + timeCommContent + ", timeCommLikeCount=" + timeCommLikeCount
-				+ ", timeCommCreateDt=" + timeCommCreateDt + ", userName=" + userName + "]";
+				+ ", timeCommCreateDt=" + timeCommCreateDt + ", userNames=" + userNames + "]";
 	}
 }

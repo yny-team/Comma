@@ -100,7 +100,7 @@
 	                                    <h3 class="post-author">
 	                                    	<span>
 	                                    		<img class="media-object" src="${pageContext.request.contextPath}/resources/images/favicon.png" alt="" style="width:25px; height:25px; display: inline-block; padding-right:3px;">
-	                                    		<a href="/mypage"><c:out value="${timeline.userName}"/></a>
+	                                    		<a href="/mypage"><c:out value="${timeline.userNames}"/></a>
 	                                    	</span>
 	                                    </h3>
 	                                    <h2 class="post-title bold"><a class="move" href="<c:out value='${timeline.timeNo}'/>"><c:out value="${timeline.timeTitle}"/></a></h2>

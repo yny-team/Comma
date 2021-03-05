@@ -14,7 +14,7 @@ public class UserVO implements UserDetails {
 	private int userNo;
 	private String userId;
 	private String userEmail;
-	private String userName;
+	private String userNames;
 	private String userPassword;
 	private String userIntro;
 	private String userProfile;
@@ -26,10 +26,10 @@ public class UserVO implements UserDetails {
 		
 	}
 	
-	public UserVO(int userNo, String userId, String userName) {
+	public UserVO(int userNo, String userId, String userNames) {
 		this.userNo = userNo;
 		this.userId = userId;
-		this.userName = userName;
+		this.userNames = userNames;
 	}
 	
 	@Override
@@ -93,12 +93,12 @@ public class UserVO implements UserDetails {
 		this.userEmail = userEmail;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUserNames() {
+		return userNames;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserNames(String userNames) {
+		this.userNames = userNames;
 	}
 
 	public String getUserPassword() {
@@ -151,7 +151,7 @@ public class UserVO implements UserDetails {
 
 	@Override
 	public String toString() {
-		return "UserVO [userNo=" + userNo + ", userId=" + userId + ", userEmail=" + userEmail + ", userName=" + userName
+		return "UserVO [userNo=" + userNo + ", userId=" + userId + ", userEmail=" + userEmail + ", userNames=" + userNames
 				+ ", userPassword=" + userPassword + ", userIntro=" + userIntro + ", userProfile=" + userProfile
 				+ ", userCreateDt=" + userCreateDt + ", userAuthority=" + userAuthority + ", userEnabled="
 				+ userEnabled + "]";

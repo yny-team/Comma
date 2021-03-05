@@ -12,7 +12,7 @@
 	</insert>
 	
 	<select id="selectTimelineListAll" resultType="TimelineVO">
-		SELECT u.user_name,  t.* 
+		SELECT u.user_names,  t.* 
 		FROM TBL_TIMELINE t
 		JOIN TBL_USER u
 		ON t.user_no = u.user_no
@@ -20,7 +20,7 @@
 	</select>
 	
 	<select id="selectTimelineOneByTimeNo" resultType="TimelineVO">
-		SELECT u.user_name,  t.* 
+		SELECT u.user_names,  t.* 
 		FROM TBL_TIMELINE t
 		JOIN TBL_USER u
 		ON t.user_no = u.user_no
