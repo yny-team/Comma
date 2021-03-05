@@ -31,10 +31,26 @@ var commentService = (function(){
 		});
 	}
 	
-	function remove(timeNo, callback, error){
+	function list(param, callback, error){
+		
+		var timeNo = param.timeNo;
+		
+		$.getJSON("/comment/list/" + timeNo, function(data){
+			if(callback){
+				callback(data);
+			}
+		}).fail(function(xhr, status, err){
+			if(error){
+				error();
+			}
+		});
+		
+	}
+	
+	function remove(timeCommNo, callback, error){
 		$.ajax({
 			type : 'delete',
-			url : '/comment/' + timeNo,
+			url : '/comment/' + timeCommNo,
 			beforeSend : function(xhr){
 				if(header && token){
 					xhr.setRequestHeader(header, token);
@@ -82,9 +98,9 @@ var commentService = (function(){
 		
 	}
 	
-	function detail(no, callback, error){
+	function detail(timeCommNo, callback, error){
 		
-		$.get("/comment/" + no, function(result){
+		$.get("/comment/" + timeCommNo, function(result){
 			if(callback){
 				callback(result);
 			}
@@ -97,6 +113,7 @@ var commentService = (function(){
 	
 	return {
 		regist : regist,
+		list : list,
 		remove : remove,
 		modify : modify,
 		detail : detail

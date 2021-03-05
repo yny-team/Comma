@@ -28,7 +28,7 @@ public class UserDAOImplTest {
 		UserVO userVO = new UserVO();
 		userVO.setUserId("test01");
 		userVO.setUserEmail("test01@naver.com");
-		userVO.setUserName("test01");
+		userVO.setUserNames("test01");
 		userVO.setUserPassword("test01");
 		
 		userDAO.insertJoIn(userVO);

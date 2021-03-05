@@ -61,7 +61,6 @@ public class TimelineController {
 
 		TimelineVO timelineVO = timelineService.getTimelineOneByTimeNo(timeNo);
 		List<ImageOrFileVO> timelineFileList = timelineFileService.getTimelineOneFileByTimeNo(timeNo);
-		List<TimelineCommentVO> timelineCommentList = timelineCommentService.getTimelineCommentListAll(timeNo);
 		
 		if(timelineVO == null) {
 			throw new NotFoundException("타임라인이 존재하지 않습니다.");
@@ -69,7 +68,6 @@ public class TimelineController {
 		
 		model.addAttribute("timelineVO", timelineVO);
 		model.addAttribute("timelineFileList", timelineFileList);
-		model.addAttribute("timelineCommentList", timelineCommentList);
 		
 		return "main/timelineDetail";
 	}	
@@ -111,9 +109,7 @@ public class TimelineController {
 		
 		TimelineVO timelineVO = timelineService.getTimelineOneByTimeNo(timeNo);
 		List<ImageOrFileVO> timelineFileList = timelineFileService.getTimelineOneFileByTimeNo(timeNo);
-		List<TimelineCommentVO> timelineCommentList = timelineCommentService.getTimelineCommentListAll(timeNo);
 
-		
 		String resultAddress = "main/timelineModifyForm";
 		
 		if(timelineVO == null) {
@@ -127,7 +123,6 @@ public class TimelineController {
 		if(!model.containsAttribute("timelineVO")) {
 			model.addAttribute("timelineVO", timelineVO);	
 		 	model.addAttribute("timelineFileList", timelineFileList);
-		 	model.addAttribute("timelineCommentList", timelineCommentList);
 		}
 		
 		return resultAddress;

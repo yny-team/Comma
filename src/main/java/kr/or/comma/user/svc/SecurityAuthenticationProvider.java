@@ -60,7 +60,7 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
 //			throw new BadCredentialsException(userId);
 //		}
 		
-		UserVO userPrincipal = new UserVO(user.getUserNo(), user.getUserId(), user.getUserName());
+		UserVO userPrincipal = new UserVO(user.getUserNo(), user.getUserId(), user.getUserNames());
 		
 		logger.info("matchPassword :::::::: true!");
 		return new UsernamePasswordAuthenticationToken(userPrincipal, null, authorities);

@@ -4,7 +4,7 @@
  	<select id="selectUserById" resultType="UserVO">
 		<![CDATA[
 			SELECT 
-				user_no, user_id, user_password, user_name, user_authority, user_enabled
+				user_no, user_id, user_password, user_names, user_authority, user_enabled
 			FROM 
 				TBL_USER
 			WHERE 

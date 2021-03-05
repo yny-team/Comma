@@ -31,9 +31,9 @@ public class TimelineCommentController {
 	@Autowired
 	private TimelineCommentService timelineCommentService;
 	
-	@GetMapping(value = "",
+	@GetMapping(value = "/list/{timeNo}",
 			produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<TimelineCommentVO>> list(@RequestParam("timeNo") int timeNo){
+	public ResponseEntity<List<TimelineCommentVO>> list(@PathVariable("timeNo") int timeNo){
 		
 		log.info("timeline comment list timeNo : {}", timeNo);
 	

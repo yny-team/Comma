@@ -24,7 +24,7 @@
 	</delete>
 	
 	<select id="selectTimelineCommentListAll" resultType="TimelineCommentVO">
-		SELECT u.user_name, tc.time_comm_no, tc.time_no, tc.user_no, tc.time_comm_content, tc.time_comm_create_dt
+		SELECT u.user_names, tc.time_comm_no, tc.time_no, tc.user_no, tc.time_comm_content, tc.time_comm_create_dt
 		FROM TBL_TIMELINE_COMMENT tc
 		JOIN TBL_USER u
 		ON tc.user_no = u.user_no			

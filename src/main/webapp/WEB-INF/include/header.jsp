@@ -25,7 +25,7 @@
 		                      <sec:authorize access="isAuthenticated()">
 		                          <li>
 		                          	<a style="border: 1px solid #dbb075; border-radius: 50px; margin-top:5px;">
-		                          		<sec:authentication property="principal.userName"/>님
+		                          		<sec:authentication property="principal.userNames"/>님
 		                          	</a>
 		                          </li>                      	
 		                          <li>
