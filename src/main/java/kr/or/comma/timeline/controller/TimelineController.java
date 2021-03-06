@@ -36,9 +36,6 @@ public class TimelineController {
 	@Autowired
 	private TimelineFileService timelineFileService;
 	
-	@Autowired
-	private TimelineCommentService timelineCommentService;
-	
 	@GetMapping("")
 	public String Index(Model model) {
 		

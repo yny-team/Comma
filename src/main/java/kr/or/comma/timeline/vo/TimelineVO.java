@@ -23,7 +23,7 @@ public class TimelineVO {
    private String timeContent;
    private int timeViewCount;
    private int timeLikeCount;
-   private int timeCommCount;
+   private int timeCommContentCount;
    private Date timeCreateDt;
    private String timeOpenScope;
    private List<ImageOrFileVO> timelineFileList;
@@ -70,12 +70,11 @@ public class TimelineVO {
    public void setTimeLikeCount(int timeLikeCount) {
       this.timeLikeCount = timeLikeCount;
    }
-   
-   public int getTimeCommCount() {
-	return timeCommCount;
-   }
-   public void setTimeCommCount(int timeCommCount) {
-		this.timeCommCount = timeCommCount;
+	public int getTimeCommContentCount() {
+		return timeCommContentCount;
+	}
+	public void setTimeCommContentCount(int timeCommContentCount) {
+		this.timeCommContentCount = timeCommContentCount;
 	}
 	public Date getTimeCreateDt() {
 	      return timeCreateDt;
@@ -100,10 +99,7 @@ public class TimelineVO {
 	public String toString() {
 		return "TimelineVO [timeNo=" + timeNo + ", userNo=" + userNo + ", userNames=" + userNames + ", timeTitle="
 				+ timeTitle + ", timeContent=" + timeContent + ", timeViewCount=" + timeViewCount + ", timeLikeCount="
-				+ timeLikeCount + ", timeCommCount=" + timeCommCount + ", timeCreateDt=" + timeCreateDt
+				+ timeLikeCount + ", timeCommContentCount=" + timeCommContentCount + ", timeCreateDt=" + timeCreateDt
 				+ ", timeOpenScope=" + timeOpenScope + ", timelineFileList=" + timelineFileList + "]";
 	}
-
-	
-	
 }

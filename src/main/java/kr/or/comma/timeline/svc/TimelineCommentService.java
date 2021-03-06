@@ -2,6 +2,7 @@ package kr.or.comma.timeline.svc;
 
 import java.util.List;
 
+import kr.or.comma.timeline.vo.TimelineCommentDTO;
 import kr.or.comma.timeline.vo.TimelineCommentVO;
 
 public interface TimelineCommentService {
@@ -14,6 +15,8 @@ public interface TimelineCommentService {
 	
 	public int removeTimelineComment(int timeCommNo);
 	
-	public List<TimelineCommentVO> getTimelineCommentListAll(int timeNo);
+//	public List<TimelineCommentVO> getTimelineCommentListAll(int timeNo);
+	
+	public TimelineCommentDTO getTimelineCommentListAll(int timeNo);
 	
 }

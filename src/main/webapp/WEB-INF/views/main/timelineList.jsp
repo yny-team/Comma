@@ -76,14 +76,16 @@
 		                                    		<ul class="slide_timeline">
 		                                    			<c:forEach items="${timelineFileList}" var="timelineFile">
 															<c:if test="${timeline.timeNo eq timelineFile.no}">
-															<li>
-															   <img src="${pageContext.request.contextPath}/resources/upload/timeline/${timelineFile.uploadPath}/s_${timelineFile.uuid}_${timelineFile.fileName}" 
-										                                    		class="img-responsive" alt="" style="display:inline-block;">
-										                    </li>
+		                               							<a class="move" href="<c:out value='${timeline.timeNo}'/>">
+																<li>
+																   	<img src="${pageContext.request.contextPath}/resources/upload/timeline/${timelineFile.uploadPath}/s_${timelineFile.uuid}_${timelineFile.fileName}" 
+											                                    		class="img-responsive"  alt="" style="display:inline-block;">
+											                    </li>
+	                                    						</a>		                            	
 										                    </c:if>
 										                </c:forEach>
 													</ul>
-		                                    	</div>		                            	
+		                                    	</div>	
  			                                    <div class="post-overlay">
 			                                       <span class="uppercase">
 			                                       	<a class="move" href="<c:out value='${timeline.timeNo}'/>">
@@ -95,7 +97,7 @@
 		                                        	</a>
 		                                        	</span>
 			                                   </div> 
-			                                </div>                         
+			                                </div>          			                                             
 	                                <div class="post-content overflow">
 	                                    <h3 class="post-author">
 	                                    	<span>
@@ -110,7 +112,7 @@
 	                                        <ul class="nav navbar-nav post-nav">
 	                                        	<li><a href="#"><i class="fa fa-heart"></i>조회수 <c:out value="${timeline.timeViewCount}"/></a></li>            
 	                                            <li><a href="#"><i class="fa fa-heart"></i>좋아요 <c:out value="${timeline.timeLikeCount}"/></a></li>
-	                                            <li><a href="#"><i class="fa fa-comments"></i>댓글 갯수</a></li>
+	                                            <li><a class="move" href="<c:out value='${timeline.timeNo}'/>"><i class="fa fa-comments"></i>댓글 갯수 <c:out value="${timeline.timeCommContentCount}"/></a></li>
 	                                        </ul>
 	                                    </div>
 	                                </div>

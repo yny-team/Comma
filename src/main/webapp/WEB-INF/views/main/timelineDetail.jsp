@@ -57,7 +57,7 @@ textarea.autosize { min-height: 50px; max-height:150px; }
 	                                        <ul class="nav navbar-nav post-nav">
 		                                        	<li><a href="#"><i class="fa fa-heart"></i>조회수 <c:out value="${timelineVO.timeViewCount}"/></a></li>            
 		                                            <li><a href="#"><i class="fa fa-heart"></i>좋아요 <c:out value="${timelineVO.timeLikeCount}"/></a></li>
-		                                            <li><a href="#"><i class="fa fa-comments"></i>댓글 갯수</a></li>
+		                                            <li><a><i class="fa fa-comments"></i>댓글 갯수 <span id="commentCount"></span></a></li>
 	                                        </ul>
 	                                    </div>	                                    
 	<%--         							<input type="hidden" name="userNo" value='<sec:authentication property="principal.userNo"/>'/>
@@ -82,7 +82,7 @@ textarea.autosize { min-height: 50px; max-height:150px; }
 	                                    <h2 class="bold">
 	                                    	Comments                           		
 	                                    </h2>
-	                                   	<textarea class="form-control autosize" name="timeCommContent" id="test" cols="10" rows="3" placeholder="새로운 댓글을 작성해주세요" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
+	                                   	<textarea class="form-control autosize" id="newComment" name="timeCommContent" id="test" cols="10" rows="3" placeholder="새로운 댓글을 작성해주세요" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
 	                                    <input type="button" id="registCommentBtn" name="name" class="form-control" required="required" value="새로운 댓글 남기기" style="border-radius: 25px; background-color: #d99c4e; color:white; font-weight: 400; margin-top:15px; margin-bottom:15px;">
 	                                    <ul class="media-list">
                             			
@@ -125,12 +125,11 @@ textarea.autosize { min-height: 50px; max-height:150px; }
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">댓글 모달</h4>
+                    <h4 class="modal-title" id="myModalLabel">댓글 수정하기</h4>
                 </div>
                 <div class="modal-body">
                    <div class="form-group">
-                      <label>댓글</label>
-                      <input class="form-control" name="timeCommContent" value="New Reply!!" placeholder="새로운 댓글을 작성해주세요"/>
+					  <textarea class="form-control autosize" id="modifyComment" name="timeCommContent" id="test" cols="10" rows="3" placeholder="새로운 댓글을 작성해주세요" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>                      
                    </div>
                 </div>
                 <div class="modal-footer">
@@ -172,15 +171,25 @@ textarea.autosize { min-height: 50px; max-height:150px; }
 		
 		var timeNoValue = '<c:out value="${timelineVO.timeNo}"/>';	
 		var commentUL = $(".media-list");
-		<sec:authentication property="principal.userNo" var="currentUser" />	
+		var currentUser = "";
+		
+		<sec:authorize access="isAuthenticated()">
+			currentUser = <sec:authentication property="principal.userNo"/>	
+		</sec:authorize>
+		
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
 		
 		showList();
 		
 		function showList(){
 			
-			commentService.list({timeNo : timeNoValue}, function(list){
+			commentService.list({timeNo : timeNoValue}, function(timeCommContentCount , list){
 				
 				//console.log(list);
+				
+				console.log(timeCommContentCount);
+				console.log(list);
 				
 				var str = "";
 				if(list == null || list.length == 0){
@@ -190,12 +199,14 @@ textarea.autosize { min-height: 50px; max-height:150px; }
 					return;
 				}
 				
+				$("#commentCount").html(timeCommContentCount);
+				
 				for(var i = 0, len = list.length || 0; i < len; i++){
 					str += "<li class='media' data-timeCommNo='" + list[i].timeCommNo + "'>";
 					str += "<div class='post-comment'>";
 					str += "<div class='media-body'>";
 					str += "<span><img class='media-object' src='images/home/icon1.png' alt='' style='width:25px; height:25px; display: inline-block; padding-right:3px;'><a href='#'>"+ list[i].userNames + "</a></span>"					
-					str += "<p>" + list[i].timeCommContent +"</p>";
+					str += "<p><pre style='background-color:#fff; border:1px solid #d99c4e;'>" + list[i].timeCommContent +"</pre></p>";
 					str += "<ul class='nav navbar-nav post-nav'>";
 					
 					var current = "";
@@ -216,7 +227,7 @@ textarea.autosize { min-height: 50px; max-height:150px; }
 						current = Math.floor(gap / (1000 * 60 * 60 * 24 * 30)) + ' 달전';					
 					
 					str += "<li><a href='#'><i class='fa fa-clock-o'></i>"+ current +"</a></li>";
-					if(${currentUser} == list[i].userNo){
+					if(currentUser == list[i].userNo){
 						str += "<button id='modifyCommentBtn' style='background-color:#fff; border:none; margin-right:5px;'><li><a><i class='fa fa-pencil'></i>수정</a></li></button>";
     	                str += "<button id='removeCommentBtn' style='background-color:#fff; border:none;'><li><a><i class='fa fa-trash-o'></i>삭제</a></li>";				
 					}
@@ -230,22 +241,29 @@ textarea.autosize { min-height: 50px; max-height:150px; }
 		
 		var modal = $(".modal");
 		var inputTimeCommContent = $("textarea[name='timeCommContent']");
-		var inputUserNo = $("input[name='userNo']");
 		
-		console.log(inputUserNo.val());
-		
-		var modalInputTimeCommContent = modal.find("input[name='timeCommContent']");
+		var modalTextareaTimeCommContent = modal.find("textarea[name='timeCommContent']");
 		
 		var modalModBtn = $("#modalModBtn");
 		var modalRemoveBtn = $("#modalRemoveBtn");
 		var modalRegistBtn = $("#modalRegistBtn") ;
 		
+		$(document).ajaxSend(function(e, xhr, options){
+			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		});
+		
 		$("#registCommentBtn").on("click", function(e){
 			
 			var comment = {
 				timeCommContent : inputTimeCommContent.val(),
-				userNo : inputUserNo.val(),
+				userNo : currentUser,
 				timeNo : timeNoValue	
+			}
+			
+			if($("#newComment").val().trim()==""){
+				alert("새로운 댓글을 입력해주세요");
+				$("#newComment").focus();				
+				return false;
 			}
 			
 			commentService.regist(comment, function(result){
@@ -259,6 +277,9 @@ textarea.autosize { min-height: 50px; max-height:150px; }
 		
 		});
 		
+		var modalBody = $(".modal-body");
+		
+		
 		$(".media-list").on("click", "#modifyCommentBtn", function(e){
 			
 			var timeCommNo = $(this).closest("div").closest("div").closest("li").data("timecommno");
@@ -267,47 +288,44 @@ textarea.autosize { min-height: 50px; max-height:150px; }
 			
 			commentService.detail(timeCommNo, function(comment){
 				
-				modalInputTimeCommContent.val(comment.timeCommContent);
+				modalTextareaTimeCommContent.val(comment.timeCommContent);
 				
 				modal.find("button[id != 'modalCloseBtn']").hide();
+				modal.attr('data-timecommno', timeCommNo);
+				
+				
 				modalModBtn.show();
 				
 				$(".modal").modal("show");
 				
 			});
+		
+		});
+		
+		modalModBtn.on("click", function(e){
 			
-			modalModBtn.on("click", function(e){
+			
+			var comment = {
+					timeCommNo : modal.data("timecommno"),
+ 					userNo : currentUser,
+					timeCommContent : modalTextareaTimeCommContent.val()					  
+			};
+
+			if($("#modifyComment").val().trim()==""){
+				alert("새로운 댓글을 입력해주세요");
+				$("#modifyComment").focus();				
+				return false;
+			}			
+			
+			commentService.modify(comment, function(result){
 				
-				var comment = {
-						timeCommNo : timeCommNo,
-						userNo : inputUserNo.val(),
-						timeCommContent : modalInputTimeCommContent.val()					  
-				};
-				
-				commentService.modify(comment, function(result){
-					
-					alert(result);
-					modal.modal("hide");
-					showList();
-					
-				});
+				alert(result);
+				modal.modal("hide");
+				showList();
 				
 			});
 			
-/* 			modalRemoveBtn.on("click", function(e){
-				
-				commentService.remove(timeCommNo, function(result){
-					
-					alert(result);
-					modal.modal("hide");
-					showList();
-					
-				});
-				
-			}); */
-			
-			
-		});
+		});		
 		
 		$(".media-list").on("click", "#removeCommentBtn", function(e){
 			
@@ -317,7 +335,7 @@ textarea.autosize { min-height: 50px; max-height:150px; }
 			
 			if(confirm("정말 삭제하시겠습니까?")){
 				
-				commentService.remove(timeCommNo, function(result){
+				commentService.remove(timeCommNo, currentUser, function(result){
 					
 					alert(result);
 					showList();

@@ -24,12 +24,22 @@
 	</delete>
 	
 	<select id="selectTimelineCommentListAll" resultType="TimelineCommentVO">
-		SELECT u.user_names, tc.time_comm_no, tc.time_no, tc.user_no, tc.time_comm_content, tc.time_comm_create_dt
+	  <![CDATA[	
+		SELECT 
+		u.user_names, tc.time_comm_no, tc.time_no, tc.user_no, tc.time_comm_content, tc.time_comm_create_dt
 		FROM TBL_TIMELINE_COMMENT tc
 		JOIN TBL_USER u
 		ON tc.user_no = u.user_no			
-		WHERE tc.time_no = #{timeNo}
-		ORDER BY tc.time_comm_no DESC
+		WHERE tc.time_comm_no > 0 
+		AND u.user_no > 0
+		AND tc.time_no = #{timeNo}
+	  ]]>
+	</select>
+	
+	<select id="selectTimelineCommentCountByTimeNo" resultType="int">
+		SELECT COUNT(time_comm_no) 
+		FROM TBL_TIMELINE_COMMENT 
+		WHERE time_no = #{timeNo}
 	</select>
 		
 </mapper>
