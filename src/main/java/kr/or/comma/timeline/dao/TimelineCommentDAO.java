@@ -16,4 +16,6 @@ public interface TimelineCommentDAO {
 	
 	public List<TimelineCommentVO> selectTimelineCommentListAll(int timeNo);
 
+	public int selectTimelineCommentCountByTimeNo(int timeNo);
+
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.comma.timeline.dao.TimelineCommentDAO;
+import kr.or.comma.timeline.vo.TimelineCommentDTO;
 import kr.or.comma.timeline.vo.TimelineCommentVO;
 
 @Service
@@ -38,11 +39,18 @@ public class TimelineCommentServiceImpl implements TimelineCommentService {
 		return timelineCommentDAO.deleteTimelineComment(timeCommNo);
 	}
 	
-	@Override
-	public List<TimelineCommentVO> getTimelineCommentListAll(int timeNo) {
+//	@Override
+//	public List<TimelineCommentVO> getTimelineCommentListAll(int timeNo) {
+//
+//		return timelineCommentDAO.selectTimelineCommentListAll(timeNo);
+//	}
 
-		return timelineCommentDAO.selectTimelineCommentListAll(timeNo);
+	@Override
+	public TimelineCommentDTO getTimelineCommentListAll(int timeNo) {
+		
+		return new TimelineCommentDTO(
+				timelineCommentDAO.selectTimelineCommentCountByTimeNo(timeNo),
+				timelineCommentDAO.selectTimelineCommentListAll(timeNo));
 	}
-	
 	
 }

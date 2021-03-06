@@ -39,12 +39,22 @@ public class TimelineCommentDAOImpl implements TimelineCommentDAO {
 		return sqlSession.delete(NAME_SPACE + ".deleteTimelineComment", timeCommNo);
 	}
 	
+//	@Override
+//	public List<TimelineCommentVO> selectTimelineCommentListAll(int timeNo) {
+//		
+//		return sqlSession.selectList(NAME_SPACE + ".selectTimelineCommentListAll", timeNo);
+//	}
+	
 	@Override
-	public List<TimelineCommentVO> selectTimelineCommentListAll(int timeNo) {
+	public int selectTimelineCommentCountByTimeNo(int timeNo) {
 		
-		return sqlSession.selectList(NAME_SPACE + ".selectTimelineCommentListAll", timeNo);
+		return sqlSession.selectOne(NAME_SPACE + ".selectTimelineCommentCountByTimeNo", timeNo);
 	}
 	
-	
+	@Override
+	public List<TimelineCommentVO> selectTimelineCommentListAll(int timeNo) {
+
+		return sqlSession.selectList(NAME_SPACE + ".selectTimelineCommentListAll", timeNo);
+	}
 	
 }
