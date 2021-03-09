@@ -23,6 +23,7 @@
 		                          <li><a href="/user/signup" style="background-color: #dbb075; color:white; border-radius: 50px; margin-top:5px;">회원가입</a></li>                 
 		                      </sec:authorize>
 		                      <sec:authorize access="isAuthenticated()">
+		                      	  <sec:authentication property="principal.userNo" var="loginUserNo"/>
 		                          <li>
 		                          	<a style="border: 1px solid #dbb075; border-radius: 50px; margin-top:5px;">
 		                          		<sec:authentication property="principal.userNames"/>님

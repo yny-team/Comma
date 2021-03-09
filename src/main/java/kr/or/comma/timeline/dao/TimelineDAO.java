@@ -16,4 +16,8 @@ public interface TimelineDAO {
 
 	public int deleteTimeline(int timeNo);
 
+	public void updateTimelineLikeCountUp(int timeNo);
+
+	public void updateTimelineLikeCountDown(int timeNo);
+
 }

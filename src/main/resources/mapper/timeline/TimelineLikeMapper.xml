@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.comma.mapper.timeline.TimelineLikeMapper">
+	
+<!-- 	<insert id="insertTimeline">
+		INSERT INTO TBL_TIMELINE(
+			time_no, user_no, time_title, time_content)
+		VALUES(
+			TIME_NO_SEQ.NEXTVAL, #{userNo}, 
+			#{timeTitle}, #{timeContent}
+			)  	   
+	</insert> -->
+	
+	<select id="selectTimelineLikeListAll" resultType="TimelineLikeVO">
+		SELECT *
+		FROM TBL_TIMELINE_LIKE
+	</select>
+
+ 	<insert id="insertTimelineLikeBytimeNoAndUserNo">
+		INSERT INTO TBL_TIMELINE_LIKE(
+			time_no, user_no)
+		VALUES(
+			#{timeNo}, #{userNo}
+			)  	   
+	</insert> 
+	
+	<delete id="deleteTimelineLikeBytimeNoAndUserNo">
+		DELETE FROM TBL_TIMELINE_LIKE
+		WHERE time_no = #{timeNo}
+		AND user_no = #{userNo}
+	</delete>
+	
+	<select id="selectTimelineLikeCountByTimeNo" resultType="int">
+		SELECT time_like_count 
+		FROM TBL_TIMELINE 
+		WHERE time_no = #{timeNo}
+	</select>
+	
+	<select id="selectTimeLikeCountByTimeNoAndUserNo" resultType="int">
+		SELECT COUNT(*) 
+		FROM TBL_TIMELINE_LIKE 
+		WHERE time_no = #{timeNo}
+		AND user_no = #{userNo}
+	</select>
+	
+<!-- 	<select id="selectTimelineOneByTimeNo" resultType="TimelineVO">
+		SELECT u.user_names,  t.* 
+		FROM TBL_TIMELINE t
+		JOIN TBL_USER u
+		ON t.user_no = u.user_no
+		WHERE t.time_no = #{timeNo}
+	</select>
+	
+	<update id="updateTimeline">
+		UPDATE TBL_TIMELINE
+		SET user_no = #{userNo}, time_title = #{timeTitle}, 
+			time_content = #{timeContent}, time_create_dt = sysdate 
+		WHERE time_no = #{timeNo}	   
+	</update>
+	
+-->
+		
+</mapper>
