@@ -42,5 +42,17 @@
 		DELETE FROM TBL_TIMELINE
 		WHERE time_no = #{timeNo}
 	</delete>
+
+	<update id="updateTimelineLikeCountUp">
+		UPDATE TBL_TIMELINE
+		SET time_like_count = time_like_count + 1 
+		WHERE time_no = #{timeNo}	   
+	</update>
+	
+	<update id="updateTimelineLikeCountDown">
+		UPDATE TBL_TIMELINE
+		SET time_like_count = time_like_count - 1  
+		WHERE time_no = #{timeNo}	   
+	</update>	
 		
 </mapper>

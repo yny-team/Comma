@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.comma.common.vo.ImageOrFileVO;
-import kr.or.comma.timeline.svc.TimelineCommentService;
 import kr.or.comma.timeline.svc.TimelineFileService;
+import kr.or.comma.timeline.svc.TimelineLikeService;
 import kr.or.comma.timeline.svc.TimelineService;
-import kr.or.comma.timeline.vo.TimelineCommentVO;
+import kr.or.comma.timeline.vo.TimelineLikeVO;
 import kr.or.comma.timeline.vo.TimelineVO;
 
 @Controller
@@ -36,6 +36,10 @@ public class TimelineController {
 	@Autowired
 	private TimelineFileService timelineFileService;
 	
+	@Autowired
+	private TimelineLikeService timelineLikeService;
+	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("")
 	public String Index(Model model) {
 		
@@ -43,9 +47,12 @@ public class TimelineController {
 		
 		List<TimelineVO> timelineList = timelineService.getTimelineListAll();
 		List<ImageOrFileVO> timelineFileList = timelineFileService.getTimelineFileListAll();
+		List<TimelineLikeVO> timelineLikeList = timelineLikeService.getTimelineLikeListAll();
 		
 		model.addAttribute("timelineList", timelineList);
 		model.addAttribute("timelineFileList", timelineFileList);
+		model.addAttribute("timelineLikeList", timelineLikeList);
+		// timeNoLike, timeNo, userNo
 		
 		return "main/timelineList";
 	}

@@ -19,6 +19,8 @@
 		<typeAlias type="kr.or.comma.common.vo.ImageOrFileVO" alias="ImageOrFileVO"/>
 			
 		<typeAlias type="kr.or.comma.timeline.vo.TimelineCommentVO" alias="TimelineCommentVO"/>
+		
+		<typeAlias type="kr.or.comma.timeline.vo.TimelineLikeVO" alias="TimelineLikeVO"/>
 	</typeAliases>
 	
 </configuration>

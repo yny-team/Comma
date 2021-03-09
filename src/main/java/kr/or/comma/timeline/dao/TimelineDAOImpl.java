@@ -44,4 +44,18 @@ public class TimelineDAOImpl implements TimelineDAO {
 		
 		return sqlSession.delete(NAME_SPACE + ".deleteTimeline", timeNo);
 	}
+	
+	@Override
+	public void updateTimelineLikeCountUp(int timeNo) {
+		
+		sqlSession.update(NAME_SPACE + ".updateTimelineLikeCountUp", timeNo);
+		
+	}
+	
+	@Override
+	public void updateTimelineLikeCountDown(int timeNo) {
+		
+		sqlSession.update(NAME_SPACE + ".updateTimelineLikeCountDown",  timeNo);
+	}
+	
 }

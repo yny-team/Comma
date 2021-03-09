@@ -110,8 +110,16 @@
 	                                    <a href="#" class="read-more">View More</a>
 	                                    <div class="post-bottom overflow">
 	                                        <ul class="nav navbar-nav post-nav">
-	                                        	<li><a href="#"><i class="fa fa-heart"></i>조회수 <c:out value="${timeline.timeViewCount}"/></a></li>            
-	                                            <li><a href="#"><i class="fa fa-heart"></i>좋아요 <c:out value="${timeline.timeLikeCount}"/></a></li>
+	                                        	<li><a href="#"><i class="fa fa-eye"></i>조회수 <c:out value="${timeline.timeViewCount}"/></a></li>            
+	                                            <li>       
+	                                            	<span class="like_${timeline.timeNo}">
+		                                           		<a>             	
+				                                            <i class="fa fa-heart-o"></i>
+				                                            좋아요 <c:out value="${timeline.timeLikeCount}"/>
+				                                            <!-- fa-heart-o -->
+			                                            </a>
+		                                            </span>
+	                                            </li>
 	                                            <li><a class="move" href="<c:out value='${timeline.timeNo}'/>"><i class="fa fa-comments"></i>댓글 갯수 <c:out value="${timeline.timeCommContentCount}"/></a></li>
 	                                        </ul>
 	                                    </div>
@@ -217,6 +225,132 @@
 		actionForm.submit();
 	});
 	
-    </script>      
+    </script>   
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/like/main_like.js"></script> 
+    <script>
+    	   
+    
+    	var param = [];
+
+		<sec:authorize access="isAuthenticated()">
+			currentUser = <sec:authentication property="principal.userNo"/>	
+		</sec:authorize>
+    	
+    	<c:forEach items="${timelineList}" var="timeline">
+    		var data = {
+    				timeNo : ${timeline.timeNo}
+    		};
+    		param.push(data);
+    	</c:forEach>
+    	
+    	console.log(param);
+    	
+    	function likeListView(){
+    		var jsonData = JSON.stringify(param);
+    		jQuery.ajaxSettings.traditional = true;
+    		$.ajax({
+    			url : '/likes',
+    			type : 'post',
+    			async : true,
+    			data: {"jsonData" : jsonData},
+    			dataType : "json",
+    			success : function(data) {    	
+    				console.log(data);	
+    				$.each(data.TimelineLikeCheckList, function(key, likeCheckList){
+    					
+    					var str = "";
+    					if(likeCheckList.timeLikeDuplicateCheck == false){
+                       		str += "<a onclick='insertTimelineLike(" + likeCheckList.timeNo + "," + currentUser + ")'>";             	
+                            str += "<i class='fa fa-heart-o'></i>";
+                            
+                            $.each(data.timelineLikeCountList, function(key, likeCountList){
+                            		if(likeCountList.timeNo == likeCheckList.timeNo){
+                            			str += "좋아요 " +  likeCountList.timeLikeCount  + "개</a>";
+                            		}
+                            
+                            });
+
+    					} else {
+    						str += "<a onclick='deleteTimelineLike(" + likeCheckList.timeNo + "," + currentUser + ")'>";                              
+    						str += "<i class='fa fa-heart'></i>";
+    						
+                            $.each(data.timelineLikeCountList, function(key, likeCountList){
+                        		if(likeCountList.timeNo == likeCheckList.timeNo){
+                        			str += "좋아요 " +  likeCountList.timeLikeCount  + "개</a>";
+                        		}
+                            });    										
+                      	}
+    					
+    					$(".like_" + likeCheckList.timeNo).html(str);
+    					
+    				});
+    				
+    			}
+    		});	
+    	}
+    	
+   
+    	
+   		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+
+		$(document).ajaxSend(function(e, xhr, options){
+			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		});
+		
+    	function insertTimelineLike(timeNo, userNo){
+    		
+    		var str = "";
+    		
+    		$.ajax({
+    			type : 'post',
+    			url : '/like/' + timeNo,
+    			data : JSON.stringify({userNo : userNo}),
+    			contentType : "application/json; charset=utf-8",
+    			success : function(result, status, xhr){
+    				console.log(result);
+    				alert(result.timeLikeMessage);
+					str += "<a onclick='deleteTimelineLike(" + timeNo + "," + currentUser + ")'>";                              
+					str += "<i class='fa fa-heart'></i>";
+             		str += "좋아요 " +  result.timeLikeCount  + "개</a>";
+                	
+             		$(".like_" + timeNo).html(str);
+    					
+    			},
+    			error : function(xhr, status, er){
+    				alert(er);
+    			}
+    		});
+    		
+    	};
+    	
+    	function deleteTimelineLike(timeNo, userNo){
+    		
+    		var str = "";
+    		
+    		$.ajax({
+    			type : 'delete',
+    			url : '/like/' + timeNo,
+    			data : JSON.stringify({userNo : userNo}),
+    			contentType : "application/json; charset=utf-8",
+    			success : function(result, status, xhr){
+    				alert(result.timeLikeMessage);	
+    				
+					str += "<a onclick='insertTimelineLike(" + timeNo + "," + currentUser + ")'>";                              
+					str += "<i class='fa fa-heart-o'></i>";
+             		str += "좋아요 " +  result.timeLikeCount  + "개</a>";
+                	
+             		$(".like_" + timeNo).html(str);
+    			},
+    			error : function(xhr, status, er){
+    				alert(er);
+    			}
+    		});
+    	};
+    	
+		$(document).ready(function() {
+			likeListView();
+		});     
+    </script>   
 </body>
 </html>
