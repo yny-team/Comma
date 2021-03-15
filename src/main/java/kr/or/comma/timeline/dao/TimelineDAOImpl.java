@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.or.comma.timeline.vo.TimelineVO;
+import kr.or.comma.timeline.vo.TimelineWithImageVO;
 
 @Repository
 public class TimelineDAOImpl implements TimelineDAO {
@@ -14,6 +15,12 @@ public class TimelineDAOImpl implements TimelineDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private static final String NAME_SPACE = "kr.or.comma.mapper.timeline.TimelineMapper";
+	
+	@Override
+	public List<TimelineWithImageVO> selectTimelineLikeTop4List() {
+		
+		return sqlSession.selectList(NAME_SPACE + ".NAME_SPACE");
+	}
 	
 	@Override
 	public int insertTimeline(TimelineVO timelineVO) {

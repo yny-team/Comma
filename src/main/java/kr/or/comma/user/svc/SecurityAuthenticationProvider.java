@@ -22,8 +22,8 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
 	@Autowired
 	private SecurityUserDetailService securityUserDetailService;
 	
-//	@Autowired
-//	private BCryptPasswordEncoder passwordEncoder;
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -32,17 +32,9 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
 		String userId = (String) authentication.getPrincipal();
 		String userPassword = (String) authentication.getCredentials();
 		
-		logger.info("userId input : " + userId);
-		logger.info("userPassword input : " + userPassword);
-		logger.info("userPassword length() : " + userPassword.length());
-		logger.info("AuthenticationProvider :::::: 1");
-		
 		UserVO user = (UserVO) securityUserDetailService.loadUserByUsername(userId);
-		logger.info("user.getPassword() : " + user.getPassword()); 
-		logger.info("user.length() : " + user.getPassword().length()); 
-		logger.info("!userPassword.equals(user.getPassword()) : " + !userPassword.equals(user.getPassword()));
-		
-		if(!userPassword.equals(user.getPassword())) {
+
+		if(!passwordEncoder.matches(userPassword, user.getPassword())) {
 			logger.info("matchPassword :::::::: false!");
 			throw new BadCredentialsException(userId);
 		}
@@ -53,12 +45,6 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
 		}
 		
 		Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) user.getAuthorities();
-		
-
-//		if(!passwordEncoder.matches(userPassword, user.getPassword())) {
-//			logger.info("matchPassword :::::::: false!");
-//			throw new BadCredentialsException(userId);
-//		}
 		
 		UserVO userPrincipal = new UserVO(user.getUserNo(), user.getUserId(), user.getUserNames());
 		

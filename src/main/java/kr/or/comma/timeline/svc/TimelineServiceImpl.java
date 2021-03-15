@@ -8,22 +8,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.or.comma.common.vo.ImageOrFileVO;
 import kr.or.comma.timeline.dao.TimelineDAO;
 import kr.or.comma.timeline.dao.TimelineFileDAO;
 import kr.or.comma.timeline.vo.TimelineVO;
+import kr.or.comma.timeline.vo.TimelineWithImageVO;
 
 @Service
 public class TimelineServiceImpl implements TimelineService {
 	
 	private static final Logger log = LoggerFactory.getLogger(TimelineServiceImpl.class);
-
+	
 	@Autowired
 	private TimelineDAO timelineDAO;
 	
 	@Autowired
 	private TimelineFileDAO timelineFileDAO;
 	
+	/*
+	 * 타임라인 게시물 등록
+	 * @Param TimelineVO timelineVO
+	 * @Return String registSuccess => success, fail
+	 */
 	@Transactional
 	@Override
 	public String registTimeline(TimelineVO timelineVO) {
@@ -31,7 +36,7 @@ public class TimelineServiceImpl implements TimelineService {
 		log.info("registTimeline : {}", timelineVO);
 		
 		String registSuccess = "success";
-		int registSuccessCount = timelineDAO.insertTimeline(timelineVO);
+		int registSuccessCount = timelineDAO.insertTimeline(timelineVO); 
 		
 		if(registSuccessCount <= 0) {
 			registSuccess = "fail";
@@ -39,17 +44,22 @@ public class TimelineServiceImpl implements TimelineService {
 		}
 
 		if((registSuccessCount > 0) && (timelineVO.getTimelineFileList() == null || 
-				timelineVO.getTimelineFileList().size() < 0)){
+				timelineVO.getTimelineFileList().size() < 0)){ // 파일 존재 X
 			return registSuccess;
-		} else if((registSuccessCount > 0 ) && timelineVO.getTimelineFileList() != null ||
-				timelineVO.getTimelineFileList().size() > 0) {
+		} else if((registSuccessCount > 0 ) && timelineVO.getTimelineFileList() != null || 
+				timelineVO.getTimelineFileList().size() > 0) { // 파일 존재 O
 			timelineVO.getTimelineFileList().forEach(timelineFileList -> {
-				timelineFileDAO.insertTimelineFile(timelineFileList);
+				timelineFileDAO.insertTimelineFile(timelineFileList); 
 			});
 		}
 		 
-		
 		return registSuccess;
+	}
+	
+	@Override
+	public List<TimelineWithImageVO> getTimelineLikeTop4List() {
+		
+		return timelineDAO.selectTimelineLikeTop4List();
 	}
 	
 	@Override
@@ -97,6 +107,11 @@ public class TimelineServiceImpl implements TimelineService {
 		return modifySuccess;
 	}
 	
+	/*
+	 * 타임라인 게시물 삭제
+	 * @Param int timeNo
+	 * @Return String removeSuccess => success, fail
+	 */
 	@Transactional
 	@Override
 	public String removeTimeline(int timeNo) {
@@ -115,5 +130,6 @@ public class TimelineServiceImpl implements TimelineService {
 		
 		return removeSuccess;
 	}
+	
 	
 }

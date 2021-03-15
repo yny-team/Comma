@@ -6,6 +6,9 @@ import kr.or.comma.user.vo.UserVO;
 
 public interface UserDAO {
 	
-	public void insertJoIn(UserVO userVO);
-	public List<UserVO> selectAllUser();
+	public int insertUser(UserVO userVO);
+
+	public int selectUserIdExistsCount(String userId);
+
+	public int selectUserEmailExistsCount(String userEmail);
 }

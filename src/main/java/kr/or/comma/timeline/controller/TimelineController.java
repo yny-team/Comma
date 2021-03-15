@@ -24,6 +24,7 @@ import kr.or.comma.timeline.svc.TimelineLikeService;
 import kr.or.comma.timeline.svc.TimelineService;
 import kr.or.comma.timeline.vo.TimelineLikeVO;
 import kr.or.comma.timeline.vo.TimelineVO;
+import kr.or.comma.timeline.vo.TimelineWithImageVO;
 
 @Controller
 public class TimelineController {
@@ -39,16 +40,17 @@ public class TimelineController {
 	@Autowired
 	private TimelineLikeService timelineLikeService;
 	
-	@PreAuthorize("isAuthenticated()")
 	@GetMapping("")
 	public String Index(Model model) {
 		
 		log.info("timeline main get :::: ");
 		
+//		List<TimelineWithImageVO> timelineWithImageList4 = timelineService.getTimelineLikeTop4List();
 		List<TimelineVO> timelineList = timelineService.getTimelineListAll();
 		List<ImageOrFileVO> timelineFileList = timelineFileService.getTimelineFileListAll();
 		List<TimelineLikeVO> timelineLikeList = timelineLikeService.getTimelineLikeListAll();
 		
+//		model.addAttribute("timelineWithImageList4", timelineWithImageList4);
 		model.addAttribute("timelineList", timelineList);
 		model.addAttribute("timelineFileList", timelineFileList);
 		model.addAttribute("timelineLikeList", timelineLikeList);

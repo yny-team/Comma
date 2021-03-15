@@ -27,7 +27,7 @@
                   <div class="form-group first">
                     <label for="username">아이디</label>
                     <input type="text" class="form-control" id="userId" name="userId"
-                    	value="${memUserId}" placeholder="아이디를 입력해주세요">
+                    	value="${userIdName}" placeholder="아이디를 입력해주세요">
                   </div>
                   <div class="form-group last mb-4">
                     <label for="password">비밀번호</label>

@@ -2,6 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.comma.mapper.timeline.TimelineMapper">
 	
+	<select id="selectTimelineLikeTop4List" resultType="TimelineWithImageVO">
+	  <![CDATA[
+		SELECT 
+		u.user_names,  t.*, 
+		(SELECT COUNT(time_comm_no) FROM TBL_TIMELINE_COMMENT WHERE time_no = t.time_no) AS timeCommContentCount
+		FROM TBL_TIMELINE t
+		JOIN TBL_USER u
+		ON t.user_no = u.user_no
+		WHERE t.time_no > 0 AND u.user_no > 0
+      ]]>
+	</select>	
+	
 	<insert id="insertTimeline">
 		INSERT INTO TBL_TIMELINE(
 			time_no, user_no, time_title, time_content)

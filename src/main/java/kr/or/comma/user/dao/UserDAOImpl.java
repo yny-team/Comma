@@ -1,5 +1,7 @@
 package kr.or.comma.user.dao;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,16 +18,20 @@ public class UserDAOImpl implements UserDAO {
 	private static final String NAME_SPACE = "kr.or.comma.mapper.user.UserMapper";
 	
 	@Override
-	public void insertJoIn(UserVO userVO) {
-		
-		sqlSession.insert(NAME_SPACE + ".insertUser", userVO);
-		
+	public int insertUser(UserVO userVO) {
+
+		return sqlSession.insert(NAME_SPACE + ".insertUser", userVO);
 	}
 	
 	@Override
-	public List<UserVO> selectAllUser() {
-		
-		return sqlSession.selectList(NAME_SPACE + ".selectAllUser");
-		
+	public int selectUserIdExistsCount(String userId) {
+
+		return sqlSession.selectOne(NAME_SPACE + ".selectUserIdExistsCount", userId);
+	}
+	
+	@Override
+	public int selectUserEmailExistsCount(String userEmail) {
+
+		return sqlSession.selectOne(NAME_SPACE + ".selectUserEmailExistsCount", userEmail);
 	}
 }

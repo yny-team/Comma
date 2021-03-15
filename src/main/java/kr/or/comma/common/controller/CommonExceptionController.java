@@ -11,18 +11,19 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+// 공통예외처리
 @ControllerAdvice
 @Controller
 public class CommonExceptionController {
 	
 	private static final Logger log = LoggerFactory.getLogger(CommonExceptionController.class);
-
+	
 	@ExceptionHandler(NoHandlerFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public String handleNoHandlerFound(NoHandlerFoundException ex) {
 		
 		// 404
-		log.info("NoHandlerFoundException = > " + ex);
+		log.info("NoHandlerFoundException => {}",ex);
 		
 		return "error404";
 	}
@@ -32,15 +33,16 @@ public class CommonExceptionController {
 	public String handleMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException e) {
 		
 		// 400
-		log.info("MethodArgumentTypeMismatchException = > " + e);
+		log.info("MethodArgumentTypeMismatchException => {}",e);
 		
 		return "error404";
 	}	
 	
 	@ExceptionHandler(NotFoundException.class)
 	public String handleNotFound(NotFoundException e) {
-			
-		log.info("NotFoundException : {}", e);
+		
+		// if(detailVO == null)
+		log.info("NotFoundException => {}", e);
 		
 		return "redirect:/";
 	}

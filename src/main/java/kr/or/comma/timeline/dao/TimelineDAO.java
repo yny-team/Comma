@@ -3,6 +3,7 @@ package kr.or.comma.timeline.dao;
 import java.util.List;
 
 import kr.or.comma.timeline.vo.TimelineVO;
+import kr.or.comma.timeline.vo.TimelineWithImageVO;
 
 public interface TimelineDAO {
 
@@ -19,5 +20,7 @@ public interface TimelineDAO {
 	public void updateTimelineLikeCountUp(int timeNo);
 
 	public void updateTimelineLikeCountDown(int timeNo);
+
+	public List<TimelineWithImageVO> selectTimelineLikeTop4List();
 
 }

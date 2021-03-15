@@ -3,15 +3,20 @@
 <mapper namespace="kr.or.comma.mapper.user.UserMapper">
 	
 	<insert id="insertUser">
-<!-- 		INSERT INTO TBL_USER(user_no, user_id, user_email,
-							 user_name, user_password)
-		VALUES(USER_NO_SEQ.NEXTVAR, #{userId}, #{userEmail},
-			   #{userName}, #{userPassword}) -->
-		INSERT INTO TBL_USER(user_no, user_id, user_email, user_name, user_password)
-		VALUES(USER_NO_SEQ.NEXTVAL, #{userId}, #{userEmail}, #{userName}, #{userPassword})  	   
+		INSERT INTO TBL_USER(user_no, user_id, user_email, user_names, user_password)
+		VALUES(USER_NO_SEQ.NEXTVAL, #{userId}, #{userEmail}, #{userNames}, #{userPassword})  	   
 	</insert>
-	
-	<select id="selectAllUser" resultType="kr.or.comma.user.vo.UserVO">
-		SELECT * FROM TBL_USER
-	</select>
+
+	<select id="selectUserIdExistsCount" resultType="int">
+		SELECT COUNT(*) 
+		FROM TBL_USER
+		WHERE user_id = #{userId}
+	</select>	
+		
+	<select id="selectUserEmailExistsCount" resultType="int">
+		SELECT COUNT(*) 
+		FROM TBL_USER
+		WHERE user_email = #{userEmail}
+	</select>		
+		
 </mapper>

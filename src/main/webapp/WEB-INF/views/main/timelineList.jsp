@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -62,8 +63,13 @@
                 <div class="col-md-12 col-lg-9">
                     <div class="form-group">
                        <a href="/regist">
-                      	<input type="button" name="name" class="form-control" value="000님, 현재 무슨 생각을 하고 계신가요?" required="required" placeholder="Name" style=" border-radius: 25px; background-color: #d99c4e; color:white; font-weight: 400;">
-                       </a>
+                        <sec:authorize access="isAnonymous()">     
+                      		<input type="button" name="name" class="form-control" value="현재 무슨 생각을 하고 계신가요?" required="required" placeholder="Name" style=" border-radius: 25px; background-color: #d99c4e; color:white; font-weight: 400;">
+                        </sec:authorize>
+                        <sec:authorize access="isAuthenticated()">
+                      		<input type="button" name="name" class="form-control" value="<sec:authentication property="principal.userNames"/>님, 현재 무슨 생각을 하고 계신가요?" required="required" placeholder="Name" style=" border-radius: 25px; background-color: #d99c4e; color:white; font-weight: 400;">
+						</sec:authorize>                       
+					   </a>
                     </div>
                     <div class="row">
                      	<c:choose>
@@ -113,7 +119,7 @@
 	                                        	<li><a href="#"><i class="fa fa-eye"></i>조회수 <c:out value="${timeline.timeViewCount}"/></a></li>            
 	                                            <li>       
 	                                            	<span class="like_${timeline.timeNo}">
-		                                           		<a>             	
+														<a>                                            	
 				                                            <i class="fa fa-heart-o"></i>
 				                                            좋아요 <c:out value="${timeline.timeLikeCount}"/>
 				                                            <!-- fa-heart-o -->
@@ -226,15 +232,14 @@
 	});
 	
     </script>   
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/like/main_like.js"></script> 
-    <script>
+<%-- 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/like/main_like.js"></script> 
+ --%>    <script>
     	   
     
     	var param = [];
 
 		<sec:authorize access="isAuthenticated()">
-			currentUser = <sec:authentication property="principal.userNo"/>	
-		</sec:authorize>
+			currentUser = <sec:authentication property="principal.userNo"/>		
     	
     	<c:forEach items="${timelineList}" var="timeline">
     		var data = {
@@ -244,6 +249,7 @@
     	</c:forEach>
     	
     	console.log(param);
+    	</sec:authorize>
     	
     	function likeListView(){
     		var jsonData = JSON.stringify(param);
@@ -261,7 +267,7 @@
     					var str = "";
     					if(likeCheckList.timeLikeDuplicateCheck == false){
                        		str += "<a onclick='insertTimelineLike(" + likeCheckList.timeNo + "," + currentUser + ")'>";             	
-                            str += "<i class='fa fa-heart-o'></i>";
+                       		str += "<i class='fa fa-heart-o'></i>";
                             
                             $.each(data.timelineLikeCountList, function(key, likeCountList){
                             		if(likeCountList.timeNo == likeCheckList.timeNo){
@@ -271,8 +277,8 @@
                             });
 
     					} else {
-    						str += "<a onclick='deleteTimelineLike(" + likeCheckList.timeNo + "," + currentUser + ")'>";                              
-    						str += "<i class='fa fa-heart'></i>";
+    							str += "<a onclick='deleteTimelineLike(" + likeCheckList.timeNo + "," + currentUser + ")'>";                              
+    							str += "<i class='fa fa-heart'></i>";
     						
                             $.each(data.timelineLikeCountList, function(key, likeCountList){
                         		if(likeCountList.timeNo == likeCheckList.timeNo){
@@ -348,9 +354,11 @@
     		});
     	};
     	
+    	<sec:authorize access="isAuthenticated()">
 		$(document).ready(function() {
 			likeListView();
 		});     
+   		</sec:authorize>
     </script>   
 </body>
 </html>

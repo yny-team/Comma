@@ -31,16 +31,7 @@ public class UserDAOImplTest {
 		userVO.setUserNames("test01");
 		userVO.setUserPassword("test01");
 		
-		userDAO.insertJoIn(userVO);
+		userDAO.insertUser(userVO);
 	}
 	
-	@Test
-	public void testSelectAllUser() {
-		
-		List<UserVO> userList = userDAO.selectAllUser();
-		
-		log.info("user : " + userList);
-		
-	}
-
 }

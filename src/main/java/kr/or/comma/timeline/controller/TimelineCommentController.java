@@ -29,6 +29,11 @@ public class TimelineCommentController {
 	@Autowired
 	private TimelineCommentService timelineCommentService;
 	
+	/*
+	 * 타임라인 댓글 리스트 조회
+	 * @Param int timeNo
+	 * @Return ResponseEntity<TimelineCommentDTO> => commentCount, commentList
+	 */
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping(value = "/comments/{timeNo}",
 			produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
@@ -41,7 +46,12 @@ public class TimelineCommentController {
 		
 	}
 	
-	@PreAuthorize("(( isAuthenticated() ) and ( principal.userNo == #timelineCommentVO.userNo ))")
+	/*
+	 * 타임라인 댓글 등록
+	 * @Param TimelineCommentVO timelineCommentVO
+	 * @Return ResponseEntity<String> => "댓글 등록을 성공했습니다.", ERROR
+	 */
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/comment/new",
 			consumes = "application/json",
 			produces = "text/plain;charset=utf8")
@@ -67,7 +77,13 @@ public class TimelineCommentController {
 				timelineCommentService.getTimelineCommentOneByTimeCommNo(timeCommNo),
 				HttpStatus.OK);
 	}
+
 	
+	/*
+	 * 타임라인 댓글 삭제
+	 * @Param TimelineCommentVO timelineCommentVO, int timeCommNo
+	 * @Return ResponseEntity<String> => "댓글 삭제를 성공했습니다.", ERROR
+	 */
 	@PreAuthorize("(( isAuthenticated()) and ( principal.userNo == #timelineCommentVO.userNo ))")
 	@DeleteMapping(value = "/comment/{timeCommNo}",
 			produces="text/plain;charset=utf8")
