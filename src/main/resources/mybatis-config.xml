@@ -21,6 +21,8 @@
 		<typeAlias type="kr.or.comma.timeline.vo.TimelineCommentVO" alias="TimelineCommentVO"/>
 		
 		<typeAlias type="kr.or.comma.timeline.vo.TimelineLikeVO" alias="TimelineLikeVO"/>
+		
+		<typeAlias type="kr.or.comma.timeline.vo.TimelineWithImageVO" alias="TimelineWithImageVO"/>
 	</typeAliases>
 	
 </configuration>

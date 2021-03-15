@@ -38,7 +38,6 @@ public class TimelineLikeController {
 	@Autowired
 	private TimelineLikeService timelineLikeService;
 	
-	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/likes")
 	@ResponseBody
 	public Map<String, Object> listLikeView(@RequestParam String jsonData) throws Exception {
@@ -121,7 +120,12 @@ public class TimelineLikeController {
 		return timeNoList;
 	}
 
-	// like : post
+	/*
+	 * 타임라인 좋아요 등록
+	 * @Param TimelineLikeVO timelineLikeVO, int timeNo
+	 * @Return ResponseEntity<TimelineLikeDTO> => timeLikeMessage, timeLikeCount;
+	 */
+	@PreAuthorize("(( isAuthenticated() ) and ( principal.userNo == #userNo ))")
 	@PostMapping(value = "/like/{timeNo}",
 			consumes = "application/json",
 			produces = {MediaType.APPLICATION_JSON_UTF8_VALUE
@@ -137,12 +141,19 @@ public class TimelineLikeController {
 		// 0 : INSERT, 1 : DELETE
 		int label = 0;
 		
-		return insertCount == 1 ? new ResponseEntity<>(timelineLikeService.getTimelineLikeMessageAndTimeLikeCount(timeNo, label)
-													   ,HttpStatus.OK)
-								: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		return insertCount == 1 
+				      ? new ResponseEntity<>(
+							timelineLikeService.getTimelineLikeMessageAndTimeLikeCount(timeNo, label)
+						,HttpStatus.OK)
+					  : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	// like : delete
+	/*
+	 * 타임라인 좋아요 취소
+	 * @Param TimelineLikeVO timelineLikeVO, int timeNo
+	 * @Return ResponseEntity<TimelineLikeDTO> => timeLikeMessage, timeLikeCount;
+	 */
+	@PreAuthorize("(( isAuthenticated() ) and ( principal.userNo == #userNo ))")
 	@DeleteMapping(value = "/like/{timeNo}",
 			consumes = "application/json",
 			produces = {MediaType.APPLICATION_JSON_UTF8_VALUE
@@ -154,11 +165,11 @@ public class TimelineLikeController {
 
 		timelineLikeVO.setTimeNo(timeNo);
 		
-		int deleteCount = timelineLikeService.removeTimelineLikeBytimeNoAndUserNo(timelineLikeVO);
+		int removeCount = timelineLikeService.removeTimelineLikeBytimeNoAndUserNo(timelineLikeVO);
 		// 0 : INSERT, 1 : DELETE
 		int label = 1;
 		
-		return deleteCount == 1 ? new ResponseEntity<>(timelineLikeService.getTimelineLikeMessageAndTimeLikeCount(timeNo, label), HttpStatus.OK)
+		return removeCount == 1 ? new ResponseEntity<>(timelineLikeService.getTimelineLikeMessageAndTimeLikeCount(timeNo, label), HttpStatus.OK)
 								: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		
 	}

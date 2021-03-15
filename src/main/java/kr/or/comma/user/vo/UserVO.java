@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,10 +15,29 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class UserVO implements UserDetails {
 
 	private int userNo;
+	
+	@NotBlank
+	@Pattern(regexp="^[a-z]{1}[a-z0-9]{5,15}$")
 	private String userId;
+	
 	private String userEmail;
+	
+	@NotBlank
+	@Pattern(regexp="^[a-z0-9A-Z_-]*")
+	private String userEmailFirst;
+	
+	@NotBlank
+	@Pattern(regexp="^[a-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[a-z]{2,3})$")
+	private String userEmailEtc;
+	
+	@NotBlank
+	@Pattern(regexp="^[가-힣]{2,7}$")
 	private String userNames;
+	
+	@NotBlank										
+	@Pattern(regexp="^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^*()-_?])[A-Za-z[0-9]!@#$%^*()-_?]{8,20}$")
 	private String userPassword;
+	
 	private String userIntro;
 	private String userProfile;
 	private Date userCreateDt;
@@ -88,6 +110,22 @@ public class UserVO implements UserDetails {
 	public String getUserEmail() {
 		return userEmail;
 	}
+	
+	public String getUserEmailFirst() {
+		return userEmailFirst;
+	}
+
+	public void setUserEmailFirst(String userEmailFirst) {
+		this.userEmailFirst = userEmailFirst;
+	}
+
+	public String getUserEmailEtc() {
+		return userEmailEtc;
+	}
+
+	public void setUserEmailEtc(String userEmailEtc) {
+		this.userEmailEtc = userEmailEtc;
+	}
 
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
@@ -151,11 +189,11 @@ public class UserVO implements UserDetails {
 
 	@Override
 	public String toString() {
-		return "UserVO [userNo=" + userNo + ", userId=" + userId + ", userEmail=" + userEmail + ", userNames=" + userNames
-				+ ", userPassword=" + userPassword + ", userIntro=" + userIntro + ", userProfile=" + userProfile
-				+ ", userCreateDt=" + userCreateDt + ", userAuthority=" + userAuthority + ", userEnabled="
-				+ userEnabled + "]";
+		return "UserVO [userNo=" + userNo + ", userId=" + userId + ", userEmail=" + userEmail + ", userEmailFirst="
+				+ userEmailFirst + ", userEmailEtc=" + userEmailEtc + ", userNames=" + userNames + ", userPassword="
+				+ userPassword + ", userIntro=" + userIntro + ", userProfile=" + userProfile + ", userCreateDt="
+				+ userCreateDt + ", userAuthority=" + userAuthority + ", userEnabled=" + userEnabled + "]";
 	}
-  
+
 }
 
