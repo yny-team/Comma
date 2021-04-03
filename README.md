@@ -1,5 +1,5 @@
 # Communication Area, Comma
-> SNS 웹 사이트
+> SNS 웹 사이트 => <a href="http://yny-comma.ga/" target="_blank">사이트 바로가기</a>
 
 ## 바로가기
 1. [제작 기간 & 참여 인원](https://github.com/yny-team/Comma/blob/master/README.md#1-%EC%A0%9C%EC%9E%91-%EA%B8%B0%EA%B0%84--%EC%B0%B8%EC%97%AC-%EC%9D%B8%EC%9B%90)
@@ -37,7 +37,4 @@
 * 타임라인 게시글 좋아요 누르기/취소
 * 로그인
 * 로그아웃
-* 회원가입 (구현중)
-* 아이디 찾기 (구현중)
-* 비밀번호 찾기 (구현중)
-* 마이페이지 정보 보기 (구현중)
+* 회원가입
