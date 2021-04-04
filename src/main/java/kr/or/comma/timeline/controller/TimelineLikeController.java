@@ -38,6 +38,11 @@ public class TimelineLikeController {
 	@Autowired
 	private TimelineLikeService timelineLikeService;
 	
+	/*
+	 * 타임라인 좋아요 리스트
+	 * @Param String jsonData
+	 * @Return Map<String, Object> timelineMap 
+	 */
 	@PostMapping(value = "/likes")
 	@ResponseBody
 	public Map<String, Object> listLikeView(@RequestParam String jsonData) throws Exception {

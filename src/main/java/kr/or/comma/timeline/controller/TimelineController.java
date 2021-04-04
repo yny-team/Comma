@@ -40,25 +40,30 @@ public class TimelineController {
 	@Autowired
 	private TimelineLikeService timelineLikeService;
 	
+	/*
+	 * 타임라인 리스트  
+	 */
 	@GetMapping("")
 	public String Index(Model model) {
 		
 		log.info("timeline main get :::: ");
 		
-//		List<TimelineWithImageVO> timelineWithImageList4 = timelineService.getTimelineLikeTop4List();
 		List<TimelineVO> timelineList = timelineService.getTimelineListAll();
 		List<ImageOrFileVO> timelineFileList = timelineFileService.getTimelineFileListAll();
 		List<TimelineLikeVO> timelineLikeList = timelineLikeService.getTimelineLikeListAll();
 		
-//		model.addAttribute("timelineWithImageList4", timelineWithImageList4);
 		model.addAttribute("timelineList", timelineList);
 		model.addAttribute("timelineFileList", timelineFileList);
 		model.addAttribute("timelineLikeList", timelineLikeList);
-		// timeNoLike, timeNo, userNo
 		
 		return "main/timelineList";
 	}
 	
+	
+	/*
+	 * 타임라인 상세보기
+	 * @Param int timeNo
+	 */ 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/detail")
 	public String detailPage(@RequestParam("timeNo") int timeNo, Model model) {
@@ -78,7 +83,11 @@ public class TimelineController {
 		return "main/timelineDetail";
 	}	
 	
-	@PreAuthorize("isAuthenticated()")
+	/*
+	 * 타임라인 등록 폼
+	 * @Param TimelineVO timelineVO
+	 */ 
+	@PAuthorize("isAuthenticated()")
 	@GetMapping("/regist")
 	public String registTimelineForm(@ModelAttribute TimelineVO timelineVO) {
 		
@@ -87,6 +96,10 @@ public class TimelineController {
 		return "main/timelineRegistForm";
 	}
 	
+	/*
+	 * 타임라인 등록
+	 * @Param TimelineVO timelinVO
+	 */ 
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/regist")
 	public String registTimeline(@ModelAttribute @Valid TimelineVO timelineVO, BindingResult bindingResult,
@@ -105,7 +118,10 @@ public class TimelineController {
 		return "redirect:/";
 	}
 	
-	
+	/*
+	 * 타임라인 수정 폼
+	 * @Param int timeNo, int userNo
+	 */ 
 	@PreAuthorize("(( isAuthenticated() ) and ( principal.userNo == #userNo ))")
 	@GetMapping("/modify")
 	public String modifyTimelineForm(@RequestParam("timeNo") int timeNo, @RequestParam("userNo") int userNo,
@@ -134,7 +150,10 @@ public class TimelineController {
 		return resultAddress;
 	}
 	
-	
+	/*
+	 * 타임라인 수정
+	 * @Param TimelineVO timelineVO
+	 */ 
 	@PreAuthorize("(( isAuthenticated() ) and ( principal.userNo == #timelineVO.userNo ))")
 	@PostMapping("/modify")					 
 	public String modifyTimeline(@ModelAttribute @Valid TimelineVO timelineVO, BindingResult bindingResult,
@@ -159,6 +178,10 @@ public class TimelineController {
 		return resultAddress;
 	}
 	
+	/*
+	 * 타임라인 삭제 
+	 * @Param int timeNo, userNo
+	 */
 	@PreAuthorize("(( isAuthenticated() ) and ( principal.userNo == #userNo ))")
 	@PostMapping("/remove")
 	public String removeTimeline(int timeNo, int userNo, RedirectAttributes rttr) throws Exception {

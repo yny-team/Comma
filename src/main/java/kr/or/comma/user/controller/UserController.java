@@ -27,6 +27,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	/*
+	 * 로그인
+	 */ 
 	@RequestMapping("/login")
 	public String loginForm() {
 		
@@ -35,6 +38,10 @@ public class UserController {
 		return "user/login";
 	}
 	
+	/*
+	 * 회원가입 페이지
+	 * @Param UserVO userVO
+	 */
 	@GetMapping("/signup")
 	public String registMemberForm(@ModelAttribute UserVO userVO) {
 		
@@ -46,7 +53,6 @@ public class UserController {
 	/*
 	 * 회원가입
 	 * @Param UserVO userVO
-	 * @Return "redirect:/user/signup" OR "redirect:/user/login"
 	 */
 	@PostMapping("/signup")
 	public String registMember(@ModelAttribute @Valid UserVO userVO, BindingResult bindingResult,
@@ -75,6 +81,11 @@ public class UserController {
 		
 	}	
 	
+	/*
+	 * 회원가입 id 중복 체크
+	 * @Param String userId
+	 * @Return int idCheckCount
+	 */
 	@ResponseBody
 	@PostMapping("/idCheck")
 	public String idCheck(@RequestParam("userId") String userId) throws Exception {
@@ -84,6 +95,11 @@ public class UserController {
 		return Integer.toString(idCheckCount);
 	}
 	
+	/*
+	 * 회원가입 email 중복 체크
+	 * @Param String userEmail
+	 * @Return int emailCheckCount 
+	 */
 	@ResponseBody
 	@PostMapping("/emailCheck")
 	public String emailCheck(@RequestParam("userEmail") String userEmail) throws Exception {

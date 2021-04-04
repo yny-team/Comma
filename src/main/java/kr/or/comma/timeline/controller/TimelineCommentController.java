@@ -98,6 +98,11 @@ public class TimelineCommentController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	/*
+	 * 타임라인 댓글 수정
+	 * @Param TimelineCommentVO timelineCommentVO
+	 * @Return ResponseEntity<String> => "댓글 수정을 성공했습니다.", ERROR 
+	 */ 
 	@PreAuthorize("(( isAuthenticated()) and ( principal.userNo == #timelineCommentVO.userNo ))")
 	@RequestMapping(method = RequestMethod.PUT,
 			value = "/comment/{timeCommNo}",

@@ -33,6 +33,11 @@ public class CommonFileController {
 	private String uploadRealPath = 
 			"C:\\Users\\330-15\\git\\comma\\src\\main\\webapp\\resources\\upload\\";
 	
+	/*
+	 * 이미지 등록
+	 * @Param MultipartFile uploadFile, String folder
+	 * @Return ResponseEntity<ImageOfFileVO>
+	 */
 	@PostMapping(value = "/upload", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public ResponseEntity<ImageOrFileVO> uploadPost(MultipartFile uploadFile, String folder) {
@@ -98,35 +103,12 @@ public class CommonFileController {
 		
 	}
 	
-	@GetMapping("/display")
-	@ResponseBody
-	public ResponseEntity<byte[]> getFile(String fileName, String folder){
-		
-		log.info("request ==> /display");
-		log.info("fileName : " + fileName);
-		
-		String displayFolder = uploadRealPath + folder + "\\";
-//		String displayFolder = uploadRealPath + folder + "/";
-		File file = new File(displayFolder + fileName);
-		
-		log.info("file : " + file);
-		
-		ResponseEntity<byte[]> result = null;
-		
-		try {
-			HttpHeaders header = new HttpHeaders();
-			
-			header.add("Content-Type", Files.probeContentType(file.toPath()));
-			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return result;
-		
-	}
-	
+
+	/*
+	 * 타임라인 등록 중 이미지 삭제 
+	 * @Param String fileName, String type, String folder
+	 * @Return ReponseEntity<String>
+	 */
 	@PostMapping("/deleteFile")
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type, String folder){
